@@ -15,14 +15,14 @@ module.exports = {
     return {
       name: options.name,
 
-      build: function(context) {
-        var config = context.config.get(this.name);
-        var data   = context.data;
+      didBuild: function(context) {
+        var deployment = context.deployment;
+        var config     = deployment.config[this.name] || {};
 
         var Tag = tagFor(config.type);
-        var tag = new Tag(data);
+        var tag = new Tag(context);
 
-        context.data.tag = tag.generate();
+        return { tag: tag.generate() };
       }
     };
   }
