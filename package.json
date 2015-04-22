@@ -46,7 +46,6 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "before": "ember-cli-deploy-json-config",
-    "after": "ember-cli-deploy-build"
+    "before": "ember-cli-deploy-json-config"
   }
 }
