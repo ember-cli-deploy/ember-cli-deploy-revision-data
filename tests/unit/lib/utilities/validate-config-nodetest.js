@@ -11,6 +11,7 @@ describe('validate-config', function() {
 
   beforeEach(function() {
     config = {
+      type: 'aaaa',
       filePattern: 'eeee'
     };
 
@@ -24,6 +25,7 @@ describe('validate-config', function() {
   });
 
   it('warns about missing optional config', function() {
+    delete config.type;
     delete config.filePattern;
 
     return assert.isFulfilled(subject(mockUi, config))
@@ -36,17 +38,20 @@ describe('validate-config', function() {
           return previous;
         }, []);
 
-        assert.equal(messages.length, 1);
+        assert.equal(messages.length, 2);
       });
   });
 
   it('adds default config to the config object', function() {
+    delete config.type;
     delete config.filePattern;
 
+    assert.isUndefined(config.type);
     assert.isUndefined(config.filePattern);
 
     return assert.isFulfilled(subject(mockUi, config))
       .then(function() {
+        assert.isDefined(config.type);
         assert.isDefined(config.filePattern);
       });
   });

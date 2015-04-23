@@ -39,6 +39,7 @@ describe('the index', function() {
           },
           config: {
             tag: {
+              type: 'index-hash',
               filePattern: 'eeee'
             }
           }
@@ -52,19 +53,28 @@ describe('the index', function() {
   describe('didBuild hook', function() {
     it ('returns the tag data', function() {
       var plugin = subject.createDeployPlugin({
-        name: 'test-plugin'
+        name: 'tag'
       });
 
       var context = {
         deployment: {
-          config: {}
+          ui: {
+            write: function() {},
+            writeLine: function() {}
+          },
+          config: {
+            tag: {
+              type: 'index-hash'
+            }
+          }
         },
         indexPath: process.cwd() + '/tests/fixtures/index.html'
       };
 
-      var result = plugin.didBuild.call(plugin, context);
-
-      assert.equal(result.tag, 'ae1569f72495012cd5e8588e0f2f5d49');
+      return assert.isFulfilled(plugin.didBuild.call(plugin, context))
+        .then(function(result) {
+          assert.equal(result.tag, 'ae1569f72495012cd5e8588e0f2f5d49');
+        });
     });
   });
 });

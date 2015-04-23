@@ -1,6 +1,8 @@
 /* jshint node: true */
 'use strict';
 
+var Promise = require('ember-cli/lib/ext/promise');
+
 var chalk = require('chalk');
 var blue  = chalk.blue;
 
@@ -12,9 +14,18 @@ module.exports = {
   createDeployPlugin: function(options) {
     var tags = require('./lib/tags');
 
-    function tagFor(type) {
-      var defaultType = 'index-hash';
-      return tags[type] || tags[defaultType];
+    function _beginMessage(ui, type) {
+      ui.write(blue('|      '));
+      ui.writeLine(blue('- creating tag using `' + type + '`'));
+
+      return Promise.resolve();
+    }
+
+    function _successMessage(ui, tag) {
+      ui.write(blue('|      '));
+      ui.writeLine(blue('- generated tag: `' + tag + '`'));
+
+      return Promise.resolve(tag);
     }
 
     return {
@@ -34,12 +45,21 @@ module.exports = {
 
       didBuild: function(context) {
         var deployment = context.deployment;
+        var ui         = deployment.ui;
         var config     = deployment.config[this.name] || {};
+        var type       = config.type;
 
-        var Tag = tagFor(config.type);
+        var Tag = tags[type];
         var tag = new Tag(context);
 
-        return { tag: tag.generate() };
+        return _beginMessage(ui, type)
+          .then(function() {
+            return Promise.resolve(tag.generate());
+          })
+          .then(_successMessage.bind(this, ui))
+          .then(function(value) {
+            return { tag: value };
+          });
       }
     };
   }
