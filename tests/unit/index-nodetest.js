@@ -14,7 +14,7 @@ describe('the index', function() {
       name: 'test-plugin'
     });
 
-    assert.equal('test-plugin', result.name);
+    assert.equal(result.name, 'test-plugin');
   });
 
   it('implements the correct hooks', function() {
