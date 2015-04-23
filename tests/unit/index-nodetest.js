@@ -25,6 +25,29 @@ describe('the index', function() {
     assert.equal(typeof result.didBuild, 'function');
   });
 
+  describe('willDeploy hook', function() {
+    it('resolves if config is ok', function() {
+      var plugin = subject.createDeployPlugin({
+        name: 'tag'
+      });
+
+      var context = {
+        deployment: {
+          ui: {
+            write: function() {},
+            writeLine: function() {}
+          },
+          config: {
+            tag: {
+              filePattern: 'eeee'
+            }
+          }
+        }
+      };
+
+      return assert.isFulfilled(plugin.willDeploy.call(plugin, context))
+    });
+  });
 
   describe('didBuild hook', function() {
     it ('returns the tag data', function() {
