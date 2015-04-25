@@ -64,11 +64,12 @@ describe('the index', function() {
           },
           config: {
             tag: {
-              type: 'index-hash'
-            }
+              type: 'index-hash',
+              filePattern: process.cwd() + '/tests/fixtures/index.html'
+            },
           }
         },
-        indexPath: process.cwd() + '/tests/fixtures/index.html'
+        distFiles: [process.cwd() + '/tests/fixtures/index.html']
       };
 
       return assert.isFulfilled(plugin.didBuild.call(plugin, context))

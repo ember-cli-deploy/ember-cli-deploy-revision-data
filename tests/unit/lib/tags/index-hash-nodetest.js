@@ -12,7 +12,12 @@ describe('the index-hash tag', function() {
   describe('#generate', function() {
     it ('generates a hash of the supplied index file', function() {
       var subject = new Tag({
-        indexPath: process.cwd() + '/tests/fixtures/index.html'
+        context: {
+          distFiles: [process.cwd() + '/tests/fixtures/index.html'],
+        },
+        config: {
+          filePattern: process.cwd() + '/tests/fixtures/index.html'
+        }
       });
 
       var hash = subject.generate();
@@ -22,7 +27,12 @@ describe('the index-hash tag', function() {
 
     it('returns an empty string when the file doesn\'t exist', function() {
       var subject = new Tag({
-        indexPath: 'non-existent-file.xml'
+        context: {
+          distFiles: [process.cwd() + '/tests/fixtures/index.html'],
+        },
+        config: {
+          filePattern: 'some-file-that-does-not-exist'
+        }
       });
 
       var hash = subject.generate();

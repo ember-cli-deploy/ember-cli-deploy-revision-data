@@ -50,7 +50,10 @@ module.exports = {
         var type       = config.type;
 
         var Tag = tags[type];
-        var tag = new Tag(context);
+        var tag = new Tag({
+          config: config,
+          context: context
+        });
 
         return _beginMessage(ui, type)
           .then(function() {
