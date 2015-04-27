@@ -25,23 +25,57 @@ describe('the index', function() {
     assert.equal(typeof result.didBuild, 'function');
   });
 
-
-  describe('didBuild hook', function() {
-    it ('returns the tag data', function() {
+  describe('willDeploy hook', function() {
+    it('resolves if config is ok', function() {
       var plugin = subject.createDeployPlugin({
-        name: 'test-plugin'
+        name: 'tag'
       });
 
       var context = {
         deployment: {
-          config: {}
-        },
-        indexPath: process.cwd() + '/tests/fixtures/index.html'
+          ui: {
+            write: function() {},
+            writeLine: function() {}
+          },
+          config: {
+            tag: {
+              type: 'index-hash',
+              filePattern: 'eeee'
+            }
+          }
+        }
       };
 
-      var result = plugin.didBuild.call(plugin, context);
+      return assert.isFulfilled(plugin.willDeploy.call(plugin, context))
+    });
+  });
 
-      assert.equal(result.tag, 'ae1569f72495012cd5e8588e0f2f5d49');
+  describe('didBuild hook', function() {
+    it ('returns the tag data', function() {
+      var plugin = subject.createDeployPlugin({
+        name: 'tag'
+      });
+
+      var context = {
+        deployment: {
+          ui: {
+            write: function() {},
+            writeLine: function() {}
+          },
+          config: {
+            tag: {
+              type: 'index-hash',
+              filePattern: process.cwd() + '/tests/fixtures/index.html'
+            },
+          }
+        },
+        distFiles: [process.cwd() + '/tests/fixtures/index.html']
+      };
+
+      return assert.isFulfilled(plugin.didBuild.call(plugin, context))
+        .then(function(result) {
+          assert.equal(result.tag, 'ae1569f72495012cd5e8588e0f2f5d49');
+        });
     });
   });
 });
