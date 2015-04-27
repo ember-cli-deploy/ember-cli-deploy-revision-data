@@ -57,6 +57,8 @@ describe('the index', function() {
       });
 
       var context = {
+        distDir: process.cwd() + '/tests/fixtures',
+        distFiles: ['index.html'],
         deployment: {
           ui: {
             write: function() {},
@@ -65,11 +67,10 @@ describe('the index', function() {
           config: {
             tag: {
               type: 'index-hash',
-              filePattern: process.cwd() + '/tests/fixtures/index.html'
+              filePattern: 'index.html'
             },
           }
-        },
-        distFiles: [process.cwd() + '/tests/fixtures/index.html']
+        }
       };
 
       return assert.isFulfilled(plugin.didBuild.call(plugin, context))
