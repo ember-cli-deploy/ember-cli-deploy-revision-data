@@ -5,6 +5,7 @@ var Promise = require('ember-cli/lib/ext/promise');
 
 var chalk = require('chalk');
 var blue  = chalk.blue;
+var red   = chalk.red;
 
 var validateConfig = require('./lib/utilities/validate-config');
 
@@ -15,17 +16,24 @@ module.exports = {
     var tags = require('./lib/tags');
 
     function _beginMessage(ui, type) {
-      ui.write(blue('|      '));
+      ui.write(blue('|    '));
       ui.writeLine(blue('- creating tag using `' + type + '`'));
 
       return Promise.resolve();
     }
 
     function _successMessage(ui, tag) {
-      ui.write(blue('|      '));
+      ui.write(blue('|    '));
       ui.writeLine(blue('- generated tag: `' + tag + '`'));
 
       return Promise.resolve(tag);
+    }
+
+    function _errorMessage(ui, error) {
+      ui.write(blue('|    '));
+      ui.write(red('- ' + error + '`\n'));
+
+      return Promise.reject(error);
     }
 
     return {
@@ -56,13 +64,12 @@ module.exports = {
         });
 
         return _beginMessage(ui, type)
-          .then(function() {
-            return Promise.resolve(tag.generate());
-          })
+        .then(tag.generate.bind(tag))
           .then(_successMessage.bind(this, ui))
           .then(function(value) {
             return { tag: value };
-          });
+          })
+          .catch(_errorMessage.bind(this, ui));
       }
     };
   }

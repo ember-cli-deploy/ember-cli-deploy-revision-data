@@ -13,31 +13,49 @@ describe('the index-hash tag', function() {
     it ('generates a hash of the supplied index file', function() {
       var subject = new Tag({
         context: {
-          distFiles: [process.cwd() + '/tests/fixtures/index.html'],
+          distDir: process.cwd() + '/tests/fixtures',
+          distFiles: ['index.html'],
         },
         config: {
-          filePattern: process.cwd() + '/tests/fixtures/index.html'
+          filePattern: 'index.html'
         }
       });
 
-      var hash = subject.generate();
-
-      assert.equal(hash, 'ae1569f72495012cd5e8588e0f2f5d49');
+      return assert.isFulfilled(subject.generate())
+        .then(function(hash) {
+          assert.equal(hash, 'ae1569f72495012cd5e8588e0f2f5d49');
+        });
     });
 
-    it('returns an empty string when the file doesn\'t exist', function() {
+    it('rejects when the filePattern doesn\'t exist in distFiles', function() {
       var subject = new Tag({
         context: {
-          distFiles: [process.cwd() + '/tests/fixtures/index.html'],
+          distDir: process.cwd() + '/tests/fixtures',
+          distFiles: ['index.html']
         },
         config: {
           filePattern: 'some-file-that-does-not-exist'
         }
       });
 
-      var hash = subject.generate();
+      return assert.isRejected(subject.generate())
+        .then(function(error) {
+          assert.equal(error, '`some-file-that-does-not-exist` does not exist in distDir');
+        });
+    });
 
-      assert.equal(hash, '');
+    it('rejects when the file doesn\'t exist', function() {
+      var subject = new Tag({
+        context: {
+          distDir: process.cwd() + '/tests/fixtures',
+          distFiles: ['index.xxx']
+        },
+        config: {
+          filePattern: 'index.xxx'
+        }
+      });
+
+      return assert.isRejected(subject.generate());
     });
   });
 });
