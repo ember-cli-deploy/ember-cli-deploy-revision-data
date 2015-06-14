@@ -2,18 +2,18 @@
 
 var assert = require('ember-cli/tests/helpers/assert');
 
-describe('the index-hash tag', function() {
+describe('the file-hash tag', function() {
   var Tag;
 
   before(function() {
-    Tag = require('../../../../lib/tags/index-hash');
+    Tag = require('../../../../lib/tags/file-hash');
   });
 
   describe('#generate', function() {
     it ('generates a hash of the supplied index file', function() {
       var subject = new Tag({
         context: {
-          distDir: process.cwd() + '/tests/fixtures',
+          distDir: 'tests/fixtures',
           distFiles: ['index.html'],
         },
         config: {
@@ -30,7 +30,7 @@ describe('the index-hash tag', function() {
     it('rejects when the filePattern doesn\'t exist in distFiles', function() {
       var subject = new Tag({
         context: {
-          distDir: process.cwd() + '/tests/fixtures',
+          distDir: 'tests/fixtures',
           distFiles: ['index.html']
         },
         config: {
@@ -40,14 +40,14 @@ describe('the index-hash tag', function() {
 
       return assert.isRejected(subject.generate())
         .then(function(error) {
-          assert.equal(error, '`some-file-that-does-not-exist` does not exist in distDir');
+          assert.equal(error, '`some-file-that-does-not-exist` does not exist in distDir `tests/fixtures`');
         });
     });
 
     it('rejects when the file doesn\'t exist', function() {
       var subject = new Tag({
         context: {
-          distDir: process.cwd() + '/tests/fixtures',
+          distDir: 'tests/fixtures',
           distFiles: ['index.xxx']
         },
         config: {
