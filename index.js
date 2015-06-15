@@ -42,7 +42,7 @@ module.exports = {
       willDeploy: function(context) {
         var deployment = context.deployment;
         var ui         = deployment.ui;
-        var config     = deployment.config[this.name] || {};
+        var config     = deployment.config[this.name] = deployment.config[this.name] || {};
 
         return validateConfig(ui, config)
           .then(function() {

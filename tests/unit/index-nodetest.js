@@ -39,7 +39,7 @@ describe('the index', function() {
           },
           config: {
             tag: {
-              type: 'index-hash',
+              type: 'file-hash',
               filePattern: 'eeee'
             }
           }
@@ -57,7 +57,7 @@ describe('the index', function() {
       });
 
       var context = {
-        distDir: process.cwd() + '/tests/fixtures',
+        distDir: 'tests/fixtures',
         distFiles: ['index.html'],
         deployment: {
           ui: {
@@ -66,7 +66,7 @@ describe('the index', function() {
           },
           config: {
             tag: {
-              type: 'index-hash',
+              type: 'file-hash',
               filePattern: 'index.html'
             },
           }
