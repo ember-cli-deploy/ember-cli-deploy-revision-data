@@ -46,7 +46,7 @@ describe('the index', function() {
         }
       };
 
-      return assert.isFulfilled(plugin.willDeploy.call(plugin, context))
+      return assert.isFulfilled(plugin.configure.call(plugin, context))
     });
   });
 
