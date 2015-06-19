@@ -28,7 +28,7 @@ describe('the index', function() {
   describe('willDeploy hook', function() {
     it('resolves if config is ok', function() {
       var plugin = subject.createDeployPlugin({
-        name: 'tag'
+        name: 'revision-key'
       });
 
       var context = {
@@ -38,7 +38,7 @@ describe('the index', function() {
             writeLine: function() {}
           },
           config: {
-            tag: {
+            'revision-key': {
               type: 'file-hash',
               filePattern: 'eeee'
             }
@@ -51,9 +51,9 @@ describe('the index', function() {
   });
 
   describe('didBuild hook', function() {
-    it ('returns the tag data', function() {
+    it ('returns the revision key data', function() {
       var plugin = subject.createDeployPlugin({
-        name: 'tag'
+        name: 'revision-key'
       });
 
       var context = {
@@ -65,7 +65,7 @@ describe('the index', function() {
             writeLine: function() {}
           },
           config: {
-            tag: {
+            'revision-key': {
               type: 'file-hash',
               filePattern: 'index.html'
             },
@@ -75,7 +75,7 @@ describe('the index', function() {
 
       return assert.isFulfilled(plugin.didBuild.call(plugin, context))
         .then(function(result) {
-          assert.equal(result.tag, 'ae1569f72495012cd5e8588e0f2f5d49');
+          assert.equal(result.revision, 'ae1569f72495012cd5e8588e0f2f5d49');
         });
     });
   });

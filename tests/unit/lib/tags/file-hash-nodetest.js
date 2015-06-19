@@ -2,16 +2,16 @@
 
 var assert = require('ember-cli/tests/helpers/assert');
 
-describe('the file-hash tag', function() {
-  var Tag;
+describe('the file-hash key generator', function() {
+  var KeyGenerator;
 
   before(function() {
-    Tag = require('../../../../lib/tags/file-hash');
+    KeyGenerator = require('../../../../lib/key-generators/file-hash');
   });
 
   describe('#generate', function() {
     it ('generates a hash of the supplied index file', function() {
-      var subject = new Tag({
+      var subject = new KeyGenerator({
         context: {
           distDir: 'tests/fixtures',
           distFiles: ['index.html'],
@@ -28,7 +28,7 @@ describe('the file-hash tag', function() {
     });
 
     it('rejects when the filePattern doesn\'t exist in distFiles', function() {
-      var subject = new Tag({
+      var subject = new KeyGenerator({
         context: {
           distDir: 'tests/fixtures',
           distFiles: ['index.html']
@@ -45,7 +45,7 @@ describe('the file-hash tag', function() {
     });
 
     it('rejects when the file doesn\'t exist', function() {
-      var subject = new Tag({
+      var subject = new KeyGenerator({
         context: {
           distDir: 'tests/fixtures',
           distFiles: ['index.xxx']

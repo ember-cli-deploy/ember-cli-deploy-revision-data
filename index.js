@@ -10,23 +10,23 @@ var red   = chalk.red;
 var validateConfig = require('./lib/utilities/validate-config');
 
 module.exports = {
-  name: 'ember-cli-deploy-tag',
+  name: 'ember-cli-deploy-revision-key',
 
   createDeployPlugin: function(options) {
-    var tags = require('./lib/tags');
+    var generators = require('./lib/key-generators');
 
     function _beginMessage(ui, type) {
       ui.write(blue('|    '));
-      ui.writeLine(blue('- creating tag using `' + type + '`'));
+      ui.writeLine(blue('- generating revision key using `' + type + '`'));
 
       return Promise.resolve();
     }
 
-    function _successMessage(ui, tag) {
+    function _successMessage(ui, key) {
       ui.write(blue('|    '));
-      ui.writeLine(blue('- generated tag: `' + tag + '`'));
+      ui.writeLine(blue('- generated revision key: `' + key + '`'));
 
-      return Promise.resolve(tag);
+      return Promise.resolve(key);
     }
 
     function _errorMessage(ui, error) {
@@ -57,17 +57,17 @@ module.exports = {
         var config     = deployment.config[this.name] || {};
         var type       = config.type;
 
-        var Tag = tags[type];
-        var tag = new Tag({
+        var KeyGenerator = generators[type];
+        var keyGenerator = new KeyGenerator({
           config: config,
           context: context
         });
 
         return _beginMessage(ui, type)
-        .then(tag.generate.bind(tag))
+        .then(keyGenerator.generate.bind(keyGenerator))
           .then(_successMessage.bind(this, ui))
           .then(function(value) {
-            return { tag: value };
+            return { revision: value };
           })
           .catch(_errorMessage.bind(this, ui));
       }
