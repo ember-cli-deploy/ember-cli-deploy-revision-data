@@ -1,7 +1,7 @@
 {
-  "name": "ember-cli-deploy-tag",
+  "name": "ember-cli-deploy-revision-key",
   "version": "0.1.0",
-  "description": "An ember-cli-plugin to create a unique tag for the build",
+  "description": "An ember-cli-plugin to create a unique revision key for the build",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,7 +11,7 @@
     "build": "ember build",
     "test": "node tests/runner.js"
   },
-  "repository": "https://github.com/zapnito/ember-cli-deploy-tag",
+  "repository": "https://github.com/zapnito/ember-cli-deploy-revision-key",
   "engines": {
     "node": ">= 0.10.0"
   },

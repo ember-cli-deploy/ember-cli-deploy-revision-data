@@ -1,4 +1,4 @@
-# Ember-cli-deploy-tag
+# Ember-cli-deploy-revision-key
 
 This README outlines the details of collaborating on this Ember addon.
 
