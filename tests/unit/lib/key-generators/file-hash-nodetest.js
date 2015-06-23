@@ -12,12 +12,10 @@ describe('the file-hash key generator', function() {
   describe('#generate', function() {
     it ('generates a hash of the supplied index file', function() {
       var subject = new KeyGenerator({
-        context: {
-          distDir: 'tests/fixtures',
-          distFiles: ['index.html'],
-        },
         config: {
-          filePattern: 'index.html'
+          filePattern: 'index.html',
+          distDir: 'tests/fixtures',
+          distFiles: ['index.html']
         }
       });
 
@@ -29,12 +27,10 @@ describe('the file-hash key generator', function() {
 
     it('rejects when the filePattern doesn\'t exist in distFiles', function() {
       var subject = new KeyGenerator({
-        context: {
+        config: {
+          filePattern: 'some-file-that-does-not-exist',
           distDir: 'tests/fixtures',
           distFiles: ['index.html']
-        },
-        config: {
-          filePattern: 'some-file-that-does-not-exist'
         }
       });
 
@@ -46,12 +42,10 @@ describe('the file-hash key generator', function() {
 
     it('rejects when the file doesn\'t exist', function() {
       var subject = new KeyGenerator({
-        context: {
+        config: {
+          filePattern: 'index.xxx',
           distDir: 'tests/fixtures',
           distFiles: ['index.xxx']
-        },
-        config: {
-          filePattern: 'index.xxx'
         }
       });
 

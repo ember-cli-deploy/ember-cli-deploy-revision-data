@@ -44,17 +44,14 @@ module.exports = {
         var ui         = deployment.ui;
         var config     = deployment.config[this.name] = deployment.config[this.name] || {};
 
-        return validateConfig(ui, config)
-          .then(function() {
-            ui.write(blue('|    '));
-            ui.writeLine(blue('- config ok'));
-          });
+        return this._resolvePipelineData(config, context)
+          .then(validateConfig.bind(this, ui, config));
       },
 
       didBuild: function(context) {
         var deployment = context.deployment;
         var ui         = deployment.ui;
-        var config     = deployment.config[this.name] || {};
+        var config     = deployment.config[this.name] = deployment.config[this.name] || {};
         var type       = config.type;
 
         var KeyGenerator = generators[type];
@@ -67,9 +64,21 @@ module.exports = {
         .then(keyGenerator.generate.bind(keyGenerator))
           .then(_successMessage.bind(this, ui))
           .then(function(value) {
-            return { revision: value };
+            return { revisionKey: value };
           })
           .catch(_errorMessage.bind(this, ui));
+      },
+
+      _resolvePipelineData: function(config, context) {
+        config.distDir = config.distDir || function(context) {
+          return context.distDir;
+        };
+
+        config.distFiles = config.distFiles || function(context) {
+          return context.distFiles;
+        };
+
+        return Promise.resolve();
       }
     };
   }
