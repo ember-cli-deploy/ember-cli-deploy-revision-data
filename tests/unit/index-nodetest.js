@@ -2,17 +2,18 @@
 
 var assert = require('ember-cli/tests/helpers/assert');
 
-function hooks(plugin) {
-  return Object.keys(plugin).filter(function(key) {
-    return (key !== 'name') && (key.charAt(0) !== '_') && (typeof plugin[key] === 'function');
-  });
-}
-
 describe('the index', function() {
-  var subject;
+  var subject, mockUi;
 
-  before(function() {
+  beforeEach(function() {
     subject = require('../../index');
+    mockUi = {
+      messages: [],
+      write: function() { },
+      writeLine: function(message) {
+        this.messages.push(message);
+      }
+    };
   });
 
   it('has a name', function() {
@@ -28,8 +29,8 @@ describe('the index', function() {
       name: 'test-plugin'
     });
 
-    assert.equal(hooks(plugin).length, 2);
-    assert.sameMembers(hooks(plugin), ['configure', 'didBuild']);
+    assert.typeOf(plugin.configure, 'function');
+    assert.typeOf(plugin.didBuild, 'function');
   });
 
   describe('configure hook', function() {
@@ -39,83 +40,93 @@ describe('the index', function() {
       });
 
       var context = {
-        deployment: {
-          ui: {
-            write: function() {},
-            writeLine: function() {}
-          },
-          config: {
-            'revision-key': {
-              type: 'file-hash',
-              filePattern: 'eeee'
-            }
+        ui: mockUi,
+        config: {
+          "revision-key": {
+            type: 'file-hash',
+            filePattern: 'eeee'
           }
         }
       };
 
-      return assert.isFulfilled(plugin.configure.call(plugin, context))
+      plugin.beforeHook(context);
+      plugin.configure(context);
+      assert.ok(true); // it didn't throw
     });
-
-    describe('resolving data from the pipeline', function() {
-      it('resolves the config data from the context', function() {
-        var plugin = subject.createDeployPlugin({
-          name: 'revision-key'
-        });
-
-        var config = {
-          type: 'file-hash',
-          filePattern: 'eeee'
-        };
-        var context = {
-          deployment: {
-            ui: {
-              write: function() {},
-              writeLine: function() {}
-            },
-            config: {
-              'revision-key': config
-            }
-          },
-
-          distDir: 'some-dir',
-          distFiles: ['a.js', 'b.css']
-        };
-
-        return assert.isFulfilled(plugin.configure.call(plugin, context))
-          .then(function() {
-            assert.typeOf(config.distDir, 'function');
-            assert.typeOf(config.distFiles, 'function');
-            assert.equal(config.distDir(context), 'some-dir');
-            assert.sameMembers(config.distFiles(context), ['a.js', 'b.css']);
-          });
-      });
-    });
-  });
-
-  describe('didBuild hook', function() {
-    it ('returns the revision key data', function() {
+    it('warns about missing optional config', function() {
       var plugin = subject.createDeployPlugin({
         name: 'revision-key'
       });
 
       var context = {
-        deployment: {
-          ui: {
-            write: function() {},
-            writeLine: function() {}
-          },
-          config: {
-            'revision-key': {
-              type: 'file-hash',
-              filePattern: 'index.html',
-              distDir: 'tests/fixtures',
-              distFiles: ['index.html'],
-            },
+        ui: mockUi,
+        config: {
+          "revision-key": {
           }
         }
       };
 
-      return assert.isFulfilled(plugin.didBuild.call(plugin, context))
+      plugin.beforeHook(context);
+      plugin.configure(context);
+
+      var messages = mockUi.messages.reduce(function(previous, current) {
+        if (/- Missing config:\s.*, using default:\s/.test(current)) {
+          previous.push(current);
+        }
+
+        return previous;
+      }, []);
+
+      assert.equal(messages.length, 4);
+    });
+
+    it('adds default config to the config object', function() {
+      var plugin = subject.createDeployPlugin({
+        name: 'revision-key'
+      });
+
+      var context = {
+        ui: mockUi,
+        config: {
+          "revision-key": {
+          }
+        }
+      };
+
+      plugin.beforeHook(context);
+      plugin.configure(context);
+
+      assert.isDefined(context.config['revision-key'].type);
+      assert.isDefined(context.config['revision-key'].filePattern);
+    });
+  });
+
+  describe('didBuild hook', function() {
+    it('returns the revisionKey', function() {
+      var plugin = subject.createDeployPlugin({
+        name: 'revision-key'
+      });
+
+      var context = {
+        distDir: 'tests/fixtures',
+        distFiles: ['index.html'],
+        ui: mockUi,
+        config: {
+          "revision-key": {
+            type: 'file-hash',
+            filePattern: 'index.html',
+            distDir: function(context) {
+              return context.distDir;
+            },
+            distFiles: function(context) {
+              return context.distFiles;
+            }
+          },
+        }
+      };
+      plugin.beforeHook(context);
+
+      return assert.isFulfilled(plugin.didBuild(context))
         .then(function(result) {
           assert.equal(result.revisionKey, 'ae1569f72495012cd5e8588e0f2f5d49');
         });
