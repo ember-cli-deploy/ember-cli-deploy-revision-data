@@ -10,13 +10,18 @@ describe('the file-hash key generator', function() {
   });
 
   describe('#generate', function() {
-    it ('generates a hash of the supplied index file', function() {
-      var subject = new KeyGenerator({
-        config: {
-          filePattern: 'index.html',
+    it('generates a hash of the supplied index file', function() {
+      var plugin = {
+        stubConfig: {
           distDir: 'tests/fixtures',
-          distFiles: ['index.html']
-        }
+          distFiles: ['index.html'],
+          filePattern: 'index.html'
+        },
+        readConfig: function(key) { return this.stubConfig[key]; }
+      };
+
+      var subject = new KeyGenerator({
+        plugin: plugin
       });
 
       return assert.isFulfilled(subject.generate())
@@ -26,12 +31,17 @@ describe('the file-hash key generator', function() {
     });
 
     it('rejects when the filePattern doesn\'t exist in distFiles', function() {
-      var subject = new KeyGenerator({
-        config: {
-          filePattern: 'some-file-that-does-not-exist',
+      var plugin = {
+        stubConfig: {
           distDir: 'tests/fixtures',
-          distFiles: ['index.html']
-        }
+          distFiles: ['index.html'],
+          filePattern: 'some-file-that-does-not-exist'
+        },
+        readConfig: function(key) { return this.stubConfig[key]; }
+      };
+
+      var subject = new KeyGenerator({
+        plugin: plugin
       });
 
       return assert.isRejected(subject.generate())
@@ -41,12 +51,17 @@ describe('the file-hash key generator', function() {
     });
 
     it('rejects when the file doesn\'t exist', function() {
-      var subject = new KeyGenerator({
-        config: {
-          filePattern: 'index.xxx',
+      var plugin = {
+        stubConfig: {
           distDir: 'tests/fixtures',
-          distFiles: ['index.xxx']
-        }
+          distFiles: ['index.xxx'],
+          filePattern: 'index.xxx'
+        },
+        readConfig: function(key) { return this.stubConfig[key]; }
+      };
+
+      var subject = new KeyGenerator({
+        plugin: plugin
       });
 
       return assert.isRejected(subject.generate());
