@@ -20,6 +20,7 @@ module.exports = {
         distFiles: function(context) {
           return context.distFiles;
         },
+        versionFile: 'package.json',
       },
       didBuild: function(context) {
         var self = this;
