@@ -54,6 +54,7 @@ For detailed information on how configuration of plugins works, please refer to 
 The type of [Key Generator](#key-generators) to be used.
 
 *Default:* `'file-hash'`
+*Alternatives:* `'git-tag-commit'`, `'version-commit'`
 
 ## Key Generators
 
@@ -82,6 +83,24 @@ The root directory where the file matching `filePattern` will be searched for. B
 The list of built project files. This option should be relative to `distDir` and should include the file that matches `filePattern`. By default, this option will use the `distFiles` property of the deployment context, provided by [ember-cli-deploy-build][2].
 
 *Default:* `context.distFiles`
+
+### Git Tag Commit generator
+
+Creates a key based on the most recent git tag and the currently checked-out commit. The tag is the tag identifier, followed by a `+` symbol, followed by the first 8 characters of the commit hash.
+
+For example, if your most recent git tag is `v2.0.3`, and the current commit is `0993043d49f9e0[...]`, this generator will return a revision of `v2.0.3+0993043d`.
+
+### Version Commit generator
+
+Similar to the Git Tag Commit generator, but uses the `package.json` version string instead of the git tag. The JSON file containing the version string can be configured with the `versionFile` option.
+
+#### Configuration Options
+
+##### versionFile
+
+The file containing your project's version number. Must be a JSON file with a top-level `version` key. Only used by the `version-commit` key generator.
+
+*Default:* `package.json`
 
 ## Prerequisites
 
