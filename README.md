@@ -1,4 +1,4 @@
-# ember-cli-deploy-revision-key
+# ember-cli-deploy-revision-data
 
 > An ember-cli-deploy plugin to generate a unique revision key based on the current build
 
@@ -22,7 +22,7 @@ To get up and running quickly, do the following:
 - Install this plugin
 
 ```bash
-$ ember install ember-cli-deploy-revision-key
+$ ember install ember-cli-deploy-revision-data
 ```
 
 - Run the pipeline
@@ -35,7 +35,7 @@ $ ember deploy
 Run the following command in your terminal:
 
 ```bash
-ember install ember-cli-deploy-revision-key
+ember install ember-cli-deploy-revision-data
 ```
 
 ## ember-cli-deploy Hooks Implemented

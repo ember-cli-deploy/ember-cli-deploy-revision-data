@@ -36,13 +36,13 @@ describe('the index', function() {
   describe('configure hook', function() {
     it('resolves if config is ok', function() {
       var plugin = subject.createDeployPlugin({
-        name: 'revision-key'
+        name: 'revision-data'
       });
 
       var context = {
         ui: mockUi,
         config: {
-          "revision-key": {
+          "revision-data": {
             type: 'file-hash',
             filePattern: 'eeee'
           }
@@ -55,13 +55,13 @@ describe('the index', function() {
     });
     it('warns about missing optional config', function() {
       var plugin = subject.createDeployPlugin({
-        name: 'revision-key'
+        name: 'revision-data'
       });
 
       var context = {
         ui: mockUi,
         config: {
-          "revision-key": {
+          "revision-data": {
           }
         }
       };
@@ -82,13 +82,13 @@ describe('the index', function() {
 
     it('adds default config to the config object', function() {
       var plugin = subject.createDeployPlugin({
-        name: 'revision-key'
+        name: 'revision-data'
       });
 
       var context = {
         ui: mockUi,
         config: {
-          "revision-key": {
+          "revision-data": {
           }
         }
       };
@@ -96,15 +96,15 @@ describe('the index', function() {
       plugin.beforeHook(context);
       plugin.configure(context);
 
-      assert.isDefined(context.config['revision-key'].type);
-      assert.isDefined(context.config['revision-key'].filePattern);
+      assert.isDefined(context.config['revision-data'].type);
+      assert.isDefined(context.config['revision-data'].filePattern);
     });
   });
 
   describe('didBuild hook', function() {
     it('returns the revisionKey', function() {
       var plugin = subject.createDeployPlugin({
-        name: 'revision-key'
+        name: 'revision-data'
       });
 
       var context = {
@@ -112,7 +112,7 @@ describe('the index', function() {
         distFiles: ['index.html'],
         ui: mockUi,
         config: {
-          "revision-key": {
+          "revision-data": {
             type: 'file-hash',
             filePattern: 'index.html',
             distDir: function(context) {

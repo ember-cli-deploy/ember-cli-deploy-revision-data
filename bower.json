@@ -1,5 +1,5 @@
 {
-  "name": "ember-cli-deploy-revision-key",
+  "name": "ember-cli-deploy-revision-data",
   "dependencies": {
     "ember": "1.11.1",
     "ember-cli-shims": "ember-cli/ember-cli-shims#0.0.3",

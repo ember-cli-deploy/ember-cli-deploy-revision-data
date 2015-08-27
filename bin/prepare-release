@@ -1,7 +1,7 @@
 #!/bin/sh
 
 rm -rf node_modules && \
-rm -rf ./ember-cli-deploy-revision-key*.tgz && \
+rm -rf ./ember-cli-deploy-revision-data*.tgz && \
 npm cache clear && \
 npm i --no-optional && \
 npm link --no-optional && \

@@ -6,7 +6,7 @@ var Promise = require('ember-cli/lib/ext/promise');
 var DeployPluginBase = require('ember-cli-deploy-plugin');
 
 module.exports = {
-  name: 'ember-cli-deploy-revision-key',
+  name: 'ember-cli-deploy-revision-data',
 
   createDeployPlugin: function(options) {
     var DeployPlugin = DeployPluginBase.extend({
