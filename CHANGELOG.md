@@ -1,3 +1,16 @@
+# ember-cli-deploy-revision-key Changelog
+
+## 0.1.0-beta.2
+
+#### Community Contributions
+
+- [#13](https://github.com/zapnito/ember-cli-deploy-revision-key/pull/13) Add git-tag-commit and version-commit key generators [@alisdair](https://github.com/alisdair)
+- [#15](https://github.com/zapnito/ember-cli-deploy-revision-key/pull/15) [BUGFIX] Remove dependency on broccoli-asset-rev [@achambers](https://github.com/achambers)
+
+Thank you to all who took the time to contribute!
+
+## 0.1.0-beta.1
+
 #### Community Contributions
 
 - [#1](https://github.com/zapnito/ember-cli-deploy-revision-key/pull/1) Create a tag form the hash of the index.html [@achambers](https://github.com/achambers)
