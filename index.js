@@ -25,15 +25,15 @@ module.exports = {
       didBuild: function(context) {
         var self = this;
         var type = this.readConfig('type');
-        var KeyGenerator = require('./lib/key-generators')[type];
-        var keyGenerator = new KeyGenerator({
+        var DataGenerator = require('./lib/data-generators')[type];
+        var dataGenerator = new DataGenerator({
           plugin: this
         });
 
-        this.log('creating revision key using `' + type + '`');
-        return keyGenerator.generate()
+        this.log('creating revision data using `' + type + '`');
+        return dataGenerator.generate()
           .then(function(revisionKey) {
-            self.log('generated revision key: `' + revisionKey + '`');
+            self.log('generated revision ata for revision: `' + revisionKey + '`');
             return revisionKey;
           })
           .then(function(revisionKey) {

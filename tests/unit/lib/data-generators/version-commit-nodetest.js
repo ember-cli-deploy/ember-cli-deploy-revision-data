@@ -3,12 +3,12 @@
 var assert = require('ember-cli/tests/helpers/assert');
 var gitRepoInfo = require('git-repo-info');
 
-describe('the version-commit key generator', function() {
-  var KeyGenerator;
+describe('the version-commit data generator', function() {
+  var DataGenerator;
   var cwd;
 
   before(function() {
-    KeyGenerator = require('../../../../lib/key-generators/version-commit');
+    DataGenerator = require('../../../../lib/data-generators/version-commit');
     gitRepoInfo._changeGitDir('dotgit');
   });
 
@@ -31,7 +31,7 @@ describe('the version-commit key generator', function() {
         readConfig: function(key) { return this.stubConfig[key]; }
       };
 
-      var subject = new KeyGenerator({
+      var subject = new DataGenerator({
         plugin: plugin
       });
 
@@ -51,7 +51,7 @@ describe('the version-commit key generator', function() {
         readConfig: function(key) { return this.stubConfig[key]; }
       };
 
-      var subject = new KeyGenerator({
+      var subject = new DataGenerator({
         plugin: plugin
       });
 
@@ -71,7 +71,7 @@ describe('the version-commit key generator', function() {
         readConfig: function(key) { return this.stubConfig[key]; }
       };
 
-      var subject = new KeyGenerator({
+      var subject = new DataGenerator({
         plugin: plugin
       });
 
@@ -91,7 +91,7 @@ describe('the version-commit key generator', function() {
         readConfig: function(key) { return this.stubConfig[key]; }
       };
 
-      var subject = new KeyGenerator({
+      var subject = new DataGenerator({
         plugin: plugin
       });
 

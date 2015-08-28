@@ -1,12 +1,13 @@
 # ember-cli-deploy-revision-data
 
-> An ember-cli-deploy plugin to generate a unique revision key based on the current build
+> An ember-cli-deploy plugin to generate data about this deploy revision including a unique revision key based on the current build
 
 <hr/>
 **WARNING: This plugin is only compatible with ember-cli-deploy versions >= 0.5.0**
 <hr/>
 
-This plugin will generate a unique revision key for the current build. The revision key can be used to uniquely identify the particular version of the application.
+This plugin will generate revison data for the current build. This data can be used by other plugins to understand more about the current revision being deployed.
+The revision key included in the revison data can be used to uniquely identify the particular version of the application.
 
 ## What is an ember-cli-deploy plugin?
 
@@ -51,18 +52,28 @@ For detailed information on how configuration of plugins works, please refer to 
 
 ### type
 
-The type of [Key Generator](#key-generators) to be used.
+The type of [Data Generator](#data-generators) to be used.
 
 *Default:* `'file-hash'`
 *Alternatives:* `'git-tag-commit'`, `'version-commit'`
 
-## Key Generators
+## Data Generators
 
-Key generators are the strategies used to generate the unique revision key. Currently there is only one Key Generator implementation but we will add more as needed. Some examples of other potential key generators are `GitHash` or `DateTime` generators.
+Data generators are the strategies used to generate information about the revision being deployed. A data generator must return an object which contains a property called `revisionKey` which uniquely identifies the current revision. A generator can add any other data that it deems relevant to the data object that it returns.
 
 ### File Hash generator
 
-This key generator will fingerprint the `index.html` and return an MD5 hash. The generation of the revision key, using this generator, is guaranteed to be idempotent. That is, the same revision key will be generated for the same set of project files. If the project files change in any way, this will be reflected by a change in the revision key.
+This generator contructs a revisionKey from the fingerprint of the `index.html` file.
+
+#### Data fields returned
+
+##### revisionKey
+
+The unique identifier of this build based on the MD5 fingerprint of the `index.html` file. This key is guaranteed to be idempotent. That is, the same revision key will be generated for the same set of project files. If the project files change in any way, this will be reflected by a change in the revision key.
+
+##### timestamp
+
+The timestamp of the current deploy
 
 #### Configuration Options
 
@@ -86,19 +97,41 @@ The list of built project files. This option should be relative to `distDir` and
 
 ### Git Tag Commit generator
 
-Creates a key based on the most recent git tag and the currently checked-out commit. The tag is the tag identifier, followed by a `+` symbol, followed by the first 8 characters of the commit hash.
+Constructs a revision key based on the most recent git tag and the currently checked-out commit.
+
+#### Data fields returned
+
+##### revisionKey
+
+The unique identifier of this build based on the git tag, followed by a `+` symbol, followed by the first 8 characters of the current commit hash.
 
 For example, if your most recent git tag is `v2.0.3`, and the current commit is `0993043d49f9e0[...]`, this generator will return a revision of `v2.0.3+0993043d`.
 
+##### timestamp
+
+The timestamp of the current deploy
+
 ### Version Commit generator
 
-Similar to the Git Tag Commit generator, but uses the `package.json` version string instead of the git tag. The JSON file containing the version string can be configured with the `versionFile` option.
+Similar to the Git Tag Commit generator but uses the `package.json` version string to construct the revision key instead of the git tag.
+
+#### Data fields returned
+
+##### revisionKey
+
+The unique identifier of this build based on the version in the `package.json`, followed by a `+` symbol, followed by the first 8 characters of the current commit hash.
+
+For example, if your package.json version is `v2.0.3`, and the current commit is `0993043d49f9e0[...]`, this generator will return a revision of `v2.0.3+0993043d`.
+
+##### timestamp
+
+The timestamp of the current deploy
 
 #### Configuration Options
 
 ##### versionFile
 
-The file containing your project's version number. Must be a JSON file with a top-level `version` key. Only used by the `version-commit` key generator.
+The file containing your project's version number. Must be a JSON file with a top-level `version` key.
 
 *Default:* `package.json`
 

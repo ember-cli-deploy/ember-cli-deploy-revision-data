@@ -2,11 +2,11 @@
 
 var assert = require('ember-cli/tests/helpers/assert');
 
-describe('the file-hash key generator', function() {
-  var KeyGenerator;
+describe('the file-hash data generator', function() {
+  var DataGenerator;
 
   before(function() {
-    KeyGenerator = require('../../../../lib/key-generators/file-hash');
+    DataGenerator = require('../../../../lib/data-generators/file-hash');
   });
 
   describe('#generate', function() {
@@ -20,7 +20,7 @@ describe('the file-hash key generator', function() {
         readConfig: function(key) { return this.stubConfig[key]; }
       };
 
-      var subject = new KeyGenerator({
+      var subject = new DataGenerator({
         plugin: plugin
       });
 
@@ -40,7 +40,7 @@ describe('the file-hash key generator', function() {
         readConfig: function(key) { return this.stubConfig[key]; }
       };
 
-      var subject = new KeyGenerator({
+      var subject = new DataGenerator({
         plugin: plugin
       });
 
@@ -60,7 +60,7 @@ describe('the file-hash key generator', function() {
         readConfig: function(key) { return this.stubConfig[key]; }
       };
 
-      var subject = new KeyGenerator({
+      var subject = new DataGenerator({
         plugin: plugin
       });
 
