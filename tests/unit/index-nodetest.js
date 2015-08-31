@@ -30,7 +30,7 @@ describe('the index', function() {
     });
 
     assert.typeOf(plugin.configure, 'function');
-    assert.typeOf(plugin.didBuild, 'function');
+    assert.typeOf(plugin.prepare, 'function');
   });
 
   describe('configure hook', function() {
@@ -101,7 +101,7 @@ describe('the index', function() {
     });
   });
 
-  describe('didBuild hook', function() {
+  describe('prepare hook', function() {
     it('returns the revisionData', function() {
       var plugin = subject.createDeployPlugin({
         name: 'revision-data'
@@ -126,7 +126,7 @@ describe('the index', function() {
       };
       plugin.beforeHook(context);
 
-      return assert.isFulfilled(plugin.didBuild(context))
+      return assert.isFulfilled(plugin.prepare(context))
         .then(function(result) {
           assert.equal(result.revisionData.revisionKey, 'ae1569f72495012cd5e8588e0f2f5d49');
           assert.isNotNull(result.revisionData.timestamp);

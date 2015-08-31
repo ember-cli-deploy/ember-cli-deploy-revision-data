@@ -22,7 +22,7 @@ module.exports = {
         },
         versionFile: 'package.json',
       },
-      didBuild: function(context) {
+      prepare: function(context) {
         var self = this;
         var type = this.readConfig('type');
         var DataGenerator = require('./lib/data-generators')[type];
