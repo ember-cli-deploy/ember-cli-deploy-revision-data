@@ -102,7 +102,7 @@ describe('the index', function() {
   });
 
   describe('didBuild hook', function() {
-    it('returns the revisionKey', function() {
+    it('returns the revisionData', function() {
       var plugin = subject.createDeployPlugin({
         name: 'revision-data'
       });
@@ -128,7 +128,8 @@ describe('the index', function() {
 
       return assert.isFulfilled(plugin.didBuild(context))
         .then(function(result) {
-          assert.equal(result.revisionKey, 'ae1569f72495012cd5e8588e0f2f5d49');
+          assert.equal(result.revisionData.revisionKey, 'ae1569f72495012cd5e8588e0f2f5d49');
+          assert.isNotNull(result.revisionData.timestamp);
         });
     });
   });

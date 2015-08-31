@@ -32,12 +32,12 @@ module.exports = {
 
         this.log('creating revision data using `' + type + '`');
         return dataGenerator.generate()
-          .then(function(revisionKey) {
-            self.log('generated revision ata for revision: `' + revisionKey + '`');
-            return revisionKey;
+          .then(function(data) {
+            self.log('generated revision data for revision: `' + data.revisionKey + '`');
+            return data;
           })
-          .then(function(revisionKey) {
-            return { revisionKey: revisionKey };
+          .then(function(data) {
+            return { revisionData: data };
           })
           .catch(this._errorMessage.bind(this));
       },

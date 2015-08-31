@@ -36,8 +36,48 @@ describe('the version-commit data generator', function() {
       });
 
       return assert.isFulfilled(subject.generate())
-        .then(function(revision) {
-          assert.equal(revision, '3.2.1+41d41f08');
+        .then(function(data) {
+          assert.equal(data.revisionKey, '3.2.1+41d41f08');
+        });
+    });
+
+    it('has version source file option', function() {
+      process.chdir('tests/fixtures/repo');
+
+      var plugin = {
+        stubConfig: {
+          versionFile: 'version.json'
+        },
+        readConfig: function(key) { return this.stubConfig[key]; }
+      };
+
+      var subject = new DataGenerator({
+        plugin: plugin
+      });
+
+      return assert.isFulfilled(subject.generate())
+        .then(function(data) {
+          assert.equal(data.revisionKey, '1.2.3+41d41f08');
+        });
+    });
+
+    it('returns a timestamp', function() {
+      process.chdir('tests/fixtures/repo');
+
+      var plugin = {
+        stubConfig: {
+          versionFile: 'package.json'
+        },
+        readConfig: function(key) { return this.stubConfig[key]; }
+      };
+
+      var subject = new DataGenerator({
+        plugin: plugin
+      });
+
+      return assert.isFulfilled(subject.generate())
+        .then(function(data) {
+          assert.isNotNull(data.timestamp);
         });
     });
 
@@ -58,26 +98,6 @@ describe('the version-commit data generator', function() {
       return assert.isRejected(subject.generate())
         .then(function(error) {
           assert.equal(error, 'Could not find git repository');
-        });
-    });
-
-    it('has version source file option', function() {
-      process.chdir('tests/fixtures/repo');
-
-      var plugin = {
-        stubConfig: {
-          versionFile: 'version.json'
-        },
-        readConfig: function(key) { return this.stubConfig[key]; }
-      };
-
-      var subject = new DataGenerator({
-        plugin: plugin
-      });
-
-      return assert.isFulfilled(subject.generate())
-        .then(function(revision) {
-          assert.equal(revision, '1.2.3+41d41f08');
         });
     });
 

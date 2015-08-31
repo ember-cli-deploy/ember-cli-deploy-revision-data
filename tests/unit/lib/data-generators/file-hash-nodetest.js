@@ -10,24 +10,37 @@ describe('the file-hash data generator', function() {
   });
 
   describe('#generate', function() {
-    it('generates a hash of the supplied index file', function() {
-      var plugin = {
-        stubConfig: {
-          distDir: 'tests/fixtures',
-          distFiles: ['index.html'],
-          filePattern: 'index.html'
-        },
-        readConfig: function(key) { return this.stubConfig[key]; }
-      };
+    describe('revisionData', function() {
+      var subject;
 
-      var subject = new DataGenerator({
-        plugin: plugin
+      before(function() {
+        var plugin = {
+          stubConfig: {
+            distDir: 'tests/fixtures',
+            distFiles: ['index.html'],
+            filePattern: 'index.html'
+          },
+          readConfig: function(key) { return this.stubConfig[key]; }
+        };
+
+        subject = new DataGenerator({
+          plugin: plugin
+        });
       });
 
-      return assert.isFulfilled(subject.generate())
-        .then(function(hash) {
-          assert.equal(hash, 'ae1569f72495012cd5e8588e0f2f5d49');
-        });
+      it('includes the revisonKey', function() {
+        return assert.isFulfilled(subject.generate())
+          .then(function(revisionData) {
+            assert.equal(revisionData.revisionKey, 'ae1569f72495012cd5e8588e0f2f5d49');
+          });
+      });
+
+      it('includes a timestamp', function() {
+        return assert.isFulfilled(subject.generate())
+          .then(function(revisionData) {
+            assert.isNotNull(revisionData.timestamp);
+          });
+      });
     });
 
     it('rejects when the filePattern doesn\'t exist in distFiles', function() {

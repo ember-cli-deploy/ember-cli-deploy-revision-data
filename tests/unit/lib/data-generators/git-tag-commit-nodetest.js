@@ -27,8 +27,19 @@ describe('the git-tag-commit data generator', function() {
       var subject = new DataGenerator();
 
       return assert.isFulfilled(subject.generate())
-        .then(function(revision) {
-          assert.equal(revision, '2.3.4+41d41f08');
+        .then(function(data) {
+          assert.equal(data.revisionKey, '2.3.4+41d41f08');
+        });
+    });
+
+    it('returns a timestamp', function() {
+      process.chdir('tests/fixtures/repo');
+
+      var subject = new DataGenerator();
+
+      return assert.isFulfilled(subject.generate())
+        .then(function(data) {
+          assert.isNotNull(data.timestamp);
         });
     });
 
