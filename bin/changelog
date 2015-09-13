@@ -21,7 +21,7 @@ var compareCommits = Promise.denodeify(github.repos.compareCommits);
 var currentVersion = 'v' + require('../package').version;
 
 var user = 'zapnito';
-var repo = 'ember-cli-deploy-revision-key';
+var repo = 'ember-cli-deploy-revision-data';
 
 compareCommits({
   user: user,

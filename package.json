@@ -1,7 +1,7 @@
 {
-  "name": "ember-cli-deploy-revision-key",
+  "name": "ember-cli-deploy-revision-data",
   "version": "0.1.0-beta.2",
-  "description": "An ember-cli-plugin to create a unique revision key for the build",
+  "description": "An ember-cli-deploy plugin to generate data about this deploy revision including a unique revision key based on the current build",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,7 +11,7 @@
     "build": "ember build",
     "test": "node tests/runner.js"
   },
-  "repository": "https://github.com/zapnito/ember-cli-deploy-revision-key",
+  "repository": "https://github.com/zapnito/ember-cli-deploy-revision-data",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -53,7 +53,6 @@
     "rsvp": "^3.0.18"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config",
-    "after": "ember-cli-deploy-json-config"
+    "configPath": "tests/dummy/config"
   }
 }

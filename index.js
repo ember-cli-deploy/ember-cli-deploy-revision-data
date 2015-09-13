@@ -6,7 +6,7 @@ var Promise = require('ember-cli/lib/ext/promise');
 var DeployPluginBase = require('ember-cli-deploy-plugin');
 
 module.exports = {
-  name: 'ember-cli-deploy-revision-key',
+  name: 'ember-cli-deploy-revision-data',
 
   createDeployPlugin: function(options) {
     var DeployPlugin = DeployPluginBase.extend({
@@ -22,22 +22,22 @@ module.exports = {
         },
         versionFile: 'package.json',
       },
-      didBuild: function(context) {
+      prepare: function(context) {
         var self = this;
         var type = this.readConfig('type');
-        var KeyGenerator = require('./lib/key-generators')[type];
-        var keyGenerator = new KeyGenerator({
+        var DataGenerator = require('./lib/data-generators')[type];
+        var dataGenerator = new DataGenerator({
           plugin: this
         });
 
-        this.log('creating revision key using `' + type + '`');
-        return keyGenerator.generate()
-          .then(function(revisionKey) {
-            self.log('generated revision key: `' + revisionKey + '`');
-            return revisionKey;
+        this.log('creating revision data using `' + type + '`');
+        return dataGenerator.generate()
+          .then(function(data) {
+            self.log('generated revision data for revision: `' + data.revisionKey + '`');
+            return data;
           })
-          .then(function(revisionKey) {
-            return { revisionKey: revisionKey };
+          .then(function(data) {
+            return { revisionData: data };
           })
           .catch(this._errorMessage.bind(this));
       },

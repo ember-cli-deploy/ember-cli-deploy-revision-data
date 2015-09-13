@@ -3,12 +3,12 @@
 var assert = require('ember-cli/tests/helpers/assert');
 var gitRepoInfo = require('git-repo-info');
 
-describe('the version-commit key generator', function() {
-  var KeyGenerator;
+describe('the version-commit data generator', function() {
+  var DataGenerator;
   var cwd;
 
   before(function() {
-    KeyGenerator = require('../../../../lib/key-generators/version-commit');
+    DataGenerator = require('../../../../lib/data-generators/version-commit');
     gitRepoInfo._changeGitDir('dotgit');
   });
 
@@ -31,33 +31,13 @@ describe('the version-commit key generator', function() {
         readConfig: function(key) { return this.stubConfig[key]; }
       };
 
-      var subject = new KeyGenerator({
+      var subject = new DataGenerator({
         plugin: plugin
       });
 
       return assert.isFulfilled(subject.generate())
-        .then(function(revision) {
-          assert.equal(revision, '3.2.1+41d41f08');
-        });
-    });
-
-    it('rejects if no repository found', function() {
-      process.chdir('tests/fixtures/not-a-repo');
-
-      var plugin = {
-        stubConfig: {
-          versionFile: 'package.json'
-        },
-        readConfig: function(key) { return this.stubConfig[key]; }
-      };
-
-      var subject = new KeyGenerator({
-        plugin: plugin
-      });
-
-      return assert.isRejected(subject.generate())
-        .then(function(error) {
-          assert.equal(error, 'Could not find git repository');
+        .then(function(data) {
+          assert.equal(data.revisionKey, '3.2.1+41d41f08');
         });
     });
 
@@ -71,13 +51,53 @@ describe('the version-commit key generator', function() {
         readConfig: function(key) { return this.stubConfig[key]; }
       };
 
-      var subject = new KeyGenerator({
+      var subject = new DataGenerator({
         plugin: plugin
       });
 
       return assert.isFulfilled(subject.generate())
-        .then(function(revision) {
-          assert.equal(revision, '1.2.3+41d41f08');
+        .then(function(data) {
+          assert.equal(data.revisionKey, '1.2.3+41d41f08');
+        });
+    });
+
+    it('returns a timestamp', function() {
+      process.chdir('tests/fixtures/repo');
+
+      var plugin = {
+        stubConfig: {
+          versionFile: 'package.json'
+        },
+        readConfig: function(key) { return this.stubConfig[key]; }
+      };
+
+      var subject = new DataGenerator({
+        plugin: plugin
+      });
+
+      return assert.isFulfilled(subject.generate())
+        .then(function(data) {
+          assert.isNotNull(data.timestamp);
+        });
+    });
+
+    it('rejects if no repository found', function() {
+      process.chdir('tests/fixtures/not-a-repo');
+
+      var plugin = {
+        stubConfig: {
+          versionFile: 'package.json'
+        },
+        readConfig: function(key) { return this.stubConfig[key]; }
+      };
+
+      var subject = new DataGenerator({
+        plugin: plugin
+      });
+
+      return assert.isRejected(subject.generate())
+        .then(function(error) {
+          assert.equal(error, 'Could not find git repository');
         });
     });
 
@@ -91,7 +111,7 @@ describe('the version-commit key generator', function() {
         readConfig: function(key) { return this.stubConfig[key]; }
       };
 
-      var subject = new KeyGenerator({
+      var subject = new DataGenerator({
         plugin: plugin
       });
 

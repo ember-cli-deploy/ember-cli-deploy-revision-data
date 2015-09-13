@@ -2,32 +2,45 @@
 
 var assert = require('ember-cli/tests/helpers/assert');
 
-describe('the file-hash key generator', function() {
-  var KeyGenerator;
+describe('the file-hash data generator', function() {
+  var DataGenerator;
 
   before(function() {
-    KeyGenerator = require('../../../../lib/key-generators/file-hash');
+    DataGenerator = require('../../../../lib/data-generators/file-hash');
   });
 
   describe('#generate', function() {
-    it('generates a hash of the supplied index file', function() {
-      var plugin = {
-        stubConfig: {
-          distDir: 'tests/fixtures',
-          distFiles: ['index.html'],
-          filePattern: 'index.html'
-        },
-        readConfig: function(key) { return this.stubConfig[key]; }
-      };
+    describe('revisionData', function() {
+      var subject;
 
-      var subject = new KeyGenerator({
-        plugin: plugin
+      before(function() {
+        var plugin = {
+          stubConfig: {
+            distDir: 'tests/fixtures',
+            distFiles: ['index.html'],
+            filePattern: 'index.html'
+          },
+          readConfig: function(key) { return this.stubConfig[key]; }
+        };
+
+        subject = new DataGenerator({
+          plugin: plugin
+        });
       });
 
-      return assert.isFulfilled(subject.generate())
-        .then(function(hash) {
-          assert.equal(hash, 'ae1569f72495012cd5e8588e0f2f5d49');
-        });
+      it('includes the revisonKey', function() {
+        return assert.isFulfilled(subject.generate())
+          .then(function(revisionData) {
+            assert.equal(revisionData.revisionKey, 'ae1569f72495012cd5e8588e0f2f5d49');
+          });
+      });
+
+      it('includes a timestamp', function() {
+        return assert.isFulfilled(subject.generate())
+          .then(function(revisionData) {
+            assert.isNotNull(revisionData.timestamp);
+          });
+      });
     });
 
     it('rejects when the filePattern doesn\'t exist in distFiles', function() {
@@ -40,7 +53,7 @@ describe('the file-hash key generator', function() {
         readConfig: function(key) { return this.stubConfig[key]; }
       };
 
-      var subject = new KeyGenerator({
+      var subject = new DataGenerator({
         plugin: plugin
       });
 
@@ -60,7 +73,7 @@ describe('the file-hash key generator', function() {
         readConfig: function(key) { return this.stubConfig[key]; }
       };
 
-      var subject = new KeyGenerator({
+      var subject = new DataGenerator({
         plugin: plugin
       });
 

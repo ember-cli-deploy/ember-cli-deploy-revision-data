@@ -30,19 +30,19 @@ describe('the index', function() {
     });
 
     assert.typeOf(plugin.configure, 'function');
-    assert.typeOf(plugin.didBuild, 'function');
+    assert.typeOf(plugin.prepare, 'function');
   });
 
   describe('configure hook', function() {
     it('resolves if config is ok', function() {
       var plugin = subject.createDeployPlugin({
-        name: 'revision-key'
+        name: 'revision-data'
       });
 
       var context = {
         ui: mockUi,
         config: {
-          "revision-key": {
+          "revision-data": {
             type: 'file-hash',
             filePattern: 'eeee'
           }
@@ -55,13 +55,13 @@ describe('the index', function() {
     });
     it('warns about missing optional config', function() {
       var plugin = subject.createDeployPlugin({
-        name: 'revision-key'
+        name: 'revision-data'
       });
 
       var context = {
         ui: mockUi,
         config: {
-          "revision-key": {
+          "revision-data": {
           }
         }
       };
@@ -82,13 +82,13 @@ describe('the index', function() {
 
     it('adds default config to the config object', function() {
       var plugin = subject.createDeployPlugin({
-        name: 'revision-key'
+        name: 'revision-data'
       });
 
       var context = {
         ui: mockUi,
         config: {
-          "revision-key": {
+          "revision-data": {
           }
         }
       };
@@ -96,15 +96,15 @@ describe('the index', function() {
       plugin.beforeHook(context);
       plugin.configure(context);
 
-      assert.isDefined(context.config['revision-key'].type);
-      assert.isDefined(context.config['revision-key'].filePattern);
+      assert.isDefined(context.config['revision-data'].type);
+      assert.isDefined(context.config['revision-data'].filePattern);
     });
   });
 
-  describe('didBuild hook', function() {
-    it('returns the revisionKey', function() {
+  describe('prepare hook', function() {
+    it('returns the revisionData', function() {
       var plugin = subject.createDeployPlugin({
-        name: 'revision-key'
+        name: 'revision-data'
       });
 
       var context = {
@@ -112,7 +112,7 @@ describe('the index', function() {
         distFiles: ['index.html'],
         ui: mockUi,
         config: {
-          "revision-key": {
+          "revision-data": {
             type: 'file-hash',
             filePattern: 'index.html',
             distDir: function(context) {
@@ -126,9 +126,10 @@ describe('the index', function() {
       };
       plugin.beforeHook(context);
 
-      return assert.isFulfilled(plugin.didBuild(context))
+      return assert.isFulfilled(plugin.prepare(context))
         .then(function(result) {
-          assert.equal(result.revisionKey, 'ae1569f72495012cd5e8588e0f2f5d49');
+          assert.equal(result.revisionData.revisionKey, 'ae1569f72495012cd5e8588e0f2f5d49');
+          assert.isNotNull(result.revisionData.timestamp);
         });
     });
   });
