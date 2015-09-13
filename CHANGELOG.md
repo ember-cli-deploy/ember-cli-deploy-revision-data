@@ -1,11 +1,24 @@
-# ember-cli-deploy-revision-key Changelog
+# ember-cli-deploy-revision-data Changelog
+
+## 0.1.0-beta.3
+
+The following changes are required if you are upgrading from the previous version:
+- Users
+  + In package.json, rename `ember-cli-deploy-revision-key` to `ember-cli-deploy-revision-data` and change
+    version to `0.1.0-beta.3`
+
+#### Community Contributions
+
+- [#16](https://github.com/zapnito/ember-cli-deploy-revision-data/pull/16) Return revision metadata instead of just revisionKey [@achambers](https://github.com/achambers)
+
+Thank you to all who took the time to contribute!
 
 ## 0.1.0-beta.2
 
 #### Community Contributions
 
-- [#13](https://github.com/zapnito/ember-cli-deploy-revision-key/pull/13) Add git-tag-commit and version-commit key generators [@alisdair](https://github.com/alisdair)
-- [#15](https://github.com/zapnito/ember-cli-deploy-revision-key/pull/15) [BUGFIX] Remove dependency on broccoli-asset-rev [@achambers](https://github.com/achambers)
+- [#13](https://github.com/zapnito/ember-cli-deploy-revision-data/pull/13) Add git-tag-commit and version-commit key generators [@alisdair](https://github.com/alisdair)
+- [#15](https://github.com/zapnito/ember-cli-deploy-revision-data/pull/15) [BUGFIX] Remove dependency on broccoli-asset-rev [@achambers](https://github.com/achambers)
 
 Thank you to all who took the time to contribute!
 
