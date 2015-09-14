@@ -144,12 +144,12 @@ The following properties are expected to be present on the deployment `context` 
 
 ## Plugins known to work well with this one
 
-[ember-cli-deploy-redis](https://github.com/zapnito/ember-cli-deploy-redis)
+[ember-cli-deploy-redis](https://github.com/ember-cli-deploy/ember-cli-deploy-redis)
 
 ## Running Tests
 
 - `npm test`
 
 [1]: http://ember-cli.github.io/ember-cli-deploy/plugins "Plugin Documentation"
-[2]: https://github.com/zapnito/ember-cli-deploy-build "ember-cli-deploy-build"
+[2]: https://github.com/ember-cli-deploy/ember-cli-deploy-build "ember-cli-deploy-build"
 [3]: https://github.com/ember-cli/ember-cli-deploy "ember-cli-deploy"
