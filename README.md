@@ -55,7 +55,7 @@ For detailed information on how configuration of plugins works, please refer to 
 The type of [Data Generator](#data-generators) to be used.
 
 *Default:* `'file-hash'`
-*Alternatives:* `'git-tag-commit'`, `'version-commit'`
+*Alternatives:* `'git-tag-commit'`, `'git-commit'`, `'version-commit'`
 
 ## Data Generators
 
@@ -106,6 +106,22 @@ Constructs a revision key based on the most recent git tag and the currently che
 The unique identifier of this build based on the git tag, followed by a `+` symbol, followed by the first 8 characters of the current commit hash.
 
 For example, if your most recent git tag is `v2.0.3`, and the current commit is `0993043d49f9e0[...]`, this generator will return a revision of `v2.0.3+0993043d`.
+
+##### timestamp
+
+The timestamp of the current deploy
+
+### Git Commit generator
+
+Constructs a revision key based on the most recent git commit.
+
+#### Data fields returned
+
+##### revisionKey
+
+The unique identifier of this build based on the first 7 characters of the current commit hash.
+
+For example, if the current commit is `0993043d49f9e0[...]`, this generator will return a revision of `0993043`.
 
 ##### timestamp
 
