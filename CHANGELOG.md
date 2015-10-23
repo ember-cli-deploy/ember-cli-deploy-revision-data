@@ -1,5 +1,15 @@
 # ember-cli-deploy-revision-data Changelog
 
+## 0.1.0-beta.4
+
+Package is now called ember-cli-deploy-revision-data.
+
+#### Community Contributions
+
+- [#19](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/19) Add git-commit data generator [@jrowlingson](https://github.com/jrowlingson)
+
+Thank you to all who took the time to contribute!
+
 ## 0.1.0-beta.3
 
 The following changes are required if you are upgrading from the previous version:
