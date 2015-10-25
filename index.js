@@ -30,10 +30,10 @@ module.exports = {
           plugin: this
         });
 
-        this.log('creating revision data using `' + type + '`');
+        this.log('creating revision data using `' + type + '`', { verbose: true });
         return dataGenerator.generate()
           .then(function(data) {
-            self.log('generated revision data for revision: `' + data.revisionKey + '`');
+            self.log('generated revision data for revision: `' + data.revisionKey + '`', { verbose: true });
             return data;
           })
           .then(function(data) {
