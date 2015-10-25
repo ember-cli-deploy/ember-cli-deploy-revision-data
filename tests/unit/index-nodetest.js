@@ -8,6 +8,7 @@ describe('the index', function() {
   beforeEach(function() {
     subject = require('../../index');
     mockUi = {
+      verbose: true,
       messages: [],
       write: function() { },
       writeLine: function(message) {
