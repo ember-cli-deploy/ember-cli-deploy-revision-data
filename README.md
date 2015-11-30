@@ -50,6 +50,12 @@ For detailed information on what plugin hooks are and how they work, please refe
 
 For detailed information on how configuration of plugins works, please refer to the [Plugin Documentation][1].
 
+### Defaults
+```
+ENV["revision-data"] = {
+  type: 'file-hash'
+}
+```
 ### type
 
 The type of [Data Generator](#data-generators) to be used.
