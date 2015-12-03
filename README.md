@@ -2,9 +2,7 @@
 
 > An ember-cli-deploy plugin to generate data about this deploy revision including a unique revision key based on the current build
 
-<hr/>
-**WARNING: This plugin is only compatible with ember-cli-deploy versions >= 0.5.0**
-<hr/>
+[![](https://ember-cli-deploy.github.io/ember-cli-deploy-version-badges/plugins/ember-cli-deploy-revision-data.svg)](http://ember-cli-deploy.github.io/ember-cli-deploy-version-badges/)
 
 This plugin will generate revison data for the current build. This data can be used by other plugins to understand more about the current revision being deployed.
 The revision key included in the revison data can be used to uniquely identify the particular version of the application.
