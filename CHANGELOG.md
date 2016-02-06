@@ -1,6 +1,18 @@
 # ember-cli-deploy-revision-data Changelog
 
-## 0.1.0-beta.4
+## [v0.1.1](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/v0.1.1) (2016-02-06)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.1.0...v0.1.1)
+
+- update ember-cli-deploy-plugin [\#26](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/26) ([ghedamat](https://github.com/ghedamat))
+- Update README.md [\#25](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/25) ([lcpriest](https://github.com/lcpriest))
+
+## [v0.1.0](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/v0.1.0) (2015-10-25)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.1.0-beta.4...v0.1.0)
+
+- Update to use new verbose option for logging [\#20](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/20) ([lukemelia](https://github.com/lukemelia))
+
+## [v0.1.0-beta.4](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/v0.1.0-beta.4) (2015-10-23)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.1.0-beta.3...v0.1.0-beta.4)
 
 Package is now called ember-cli-deploy-revision-data.
 
