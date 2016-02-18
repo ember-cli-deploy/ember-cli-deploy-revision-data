@@ -50,7 +50,8 @@
     "ember-cli-deploy-plugin": "^0.2.1",
     "git-repo-info": "^1.1.2",
     "minimatch": "^2.0.4",
-    "rsvp": "^3.0.18"
+    "rsvp": "^3.0.18",
+    "simple-git": "^1.26.2"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

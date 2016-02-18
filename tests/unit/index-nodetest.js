@@ -78,7 +78,7 @@ describe('the index', function() {
         return previous;
       }, []);
 
-      assert.equal(messages.length, 5);
+      assert.equal(messages.length, 6);
     });
 
     it('adds default config to the config object', function() {
@@ -99,6 +99,7 @@ describe('the index', function() {
 
       assert.isDefined(context.config['revision-data'].type);
       assert.isDefined(context.config['revision-data'].filePattern);
+      assert.isDefined(context.config['revision-data'].scm);
     });
   });
 
@@ -116,6 +117,9 @@ describe('the index', function() {
           "revision-data": {
             type: 'file-hash',
             filePattern: 'index.html',
+            scm: function(context) {
+              return require('../../lib/scm-data-generators')['git'];
+            },
             distDir: function(context) {
               return context.distDir;
             },
@@ -131,8 +135,8 @@ describe('the index', function() {
         .then(function(result) {
           assert.equal(result.revisionData.revisionKey, 'ae1569f72495012cd5e8588e0f2f5d49');
           assert.isNotNull(result.revisionData.timestamp);
+          assert.isNotNull(result.revisionData.scm.email);
         });
     });
   });
 });
-

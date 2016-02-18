@@ -51,7 +51,10 @@ For detailed information on how configuration of plugins works, please refer to 
 ### Defaults
 ```
 ENV["revision-data"] = {
-  type: 'file-hash'
+  type: 'file-hash',
+  scm: function(context) {
+    return require('./lib/scm-data-generators')['git'];
+  }
 }
 ```
 ### type
@@ -60,6 +63,16 @@ The type of [Data Generator](#data-generators) to be used.
 
 *Default:* `'file-hash'`
 *Alternatives:* `'git-tag-commit'`, `'git-commit'`, `'version-commit'`
+
+### scm
+
+The type of the [SCM Data Generator](#scm-data-generator) to be used
+
+*Default:* GitScmDataGenerator
+
+You can set this to `null` if you don't want any Scm Data Generator to be used.
+
+You can also pass your own custom scm generator class.
 
 ## Data Generators
 
@@ -154,6 +167,36 @@ The timestamp of the current deploy
 The file containing your project's version number. Must be a JSON file with a top-level `version` key.
 
 *Default:* `package.json`
+
+## SCM Data Generators
+
+SCM Data generators are the strategies used to collect extra information about the revision being deployed. An scm data generator must return an object which contains properties that it deems relevant to the revision being deployed .
+
+### Git generator
+
+This generator uses the information available from the git repository of your ember-cli application.
+
+#### Data fields returned
+
+##### sha
+
+The SHA of the commit being deployed
+
+##### email
+
+Committer's email
+
+##### name
+
+Committer's name
+
+##### branch
+
+Git branch being deployed
+
+##### timestamp
+
+Commit's timestamp
 
 ## Prerequisites
 
