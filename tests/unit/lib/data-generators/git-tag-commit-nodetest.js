@@ -43,6 +43,17 @@ describe('the git-tag-commit data generator', function() {
         });
     });
 
+    it('succeeds if the repo has commits since the last tag', function() {
+      process.chdir('tests/fixtures/repo-with-additional-commit');
+
+      var subject = new DataGenerator();
+
+      return assert.isFulfilled(subject.generate())
+        .then(function(data) {
+          assert.equal(data.revisionKey, '2.3.4+afaf1be4');
+        });
+    });
+
     it('rejects if no repository found', function() {
       process.chdir('tests/fixtures/not-a-repo');
 
