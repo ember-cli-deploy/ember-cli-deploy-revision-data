@@ -32,6 +32,7 @@ describe('the git scm data generator', function() {
           assert.equal(data.name, 'Alisdair McDiarmid');
           assert.isNotNull(data.timestamp);
           assert.equal(data.branch, 'master');
+          assert.equal(data.tag, '2.3.4');
         });
     });
   });
