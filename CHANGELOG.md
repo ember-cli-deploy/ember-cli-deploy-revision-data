@@ -1,5 +1,12 @@
 # ember-cli-deploy-revision-data Changelog
 
+## [0.2.0](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/0.2.0) (2016-04-01)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.1.1...0.2.0)
+
+Capture data about the current git revision (with abstraction for support for other SCM tools) and return it for storage in the deployment context's `revisionData.scm` node.
+
+- add scm-data-generators and git scm generator [\#29](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/29) ([ghedamat](https://github.com/ghedamat))
+
 ## [v0.1.1](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/v0.1.1) (2016-02-06)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.1.0...v0.1.1)
 
