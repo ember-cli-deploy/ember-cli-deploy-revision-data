@@ -1,5 +1,10 @@
 # ember-cli-deploy-revision-data Changelog
 
+## [0.2.1](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/0.2.1) (2016-04-06)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.2.0...0.2.1)
+
+- \[BUGFIX\] Remove ' from commit hash if needed [\#31](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/31) ([ghedamat](https://github.com/ghedamat))
+
 ## [0.2.0](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/0.2.0) (2016-04-01)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.1.1...0.2.0)
 
