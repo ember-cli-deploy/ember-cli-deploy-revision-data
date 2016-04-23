@@ -21,6 +21,59 @@ describe('the version-commit data generator', function() {
   });
 
   describe('#generate', function() {
+    describe('with partial commit data', function() {
+      before(function() {
+        gitRepoInfo._changeGitDir('dotgit-branch-only');
+      });
+
+      after(function() {
+        gitRepoInfo._changeGitDir('dotgit');
+      });
+
+      it('only adds `+revision` if it can be read', function() {
+        process.chdir('tests/fixtures/repo');
+
+        var plugin = {
+          stubConfig: {
+            versionFile: 'package.json'
+          },
+          readConfig: function(key) { return this.stubConfig[key]; },
+          log: function() {}
+        };
+
+        var subject = new DataGenerator({
+          plugin: plugin
+        });
+
+        return assert.isFulfilled(subject.generate())
+          .then(function(data) {
+            var path = gitRepoInfo._findRepo();
+            assert.equal(data.revisionKey, '3.2.1');
+          });
+      });
+
+      it('logs a warning if no git sha found', function() {
+        process.chdir('tests/fixtures/repo');
+
+        var expectedMessage = /missing git commit sha/i;
+        var plugin = {
+          stubConfig: {
+            versionFile: 'package.json'
+          },
+          readConfig: function(key) { return this.stubConfig[key]; },
+          log: function(message) {
+            assert.ok(message.match(expectedMessage));
+          }
+        };
+
+        var subject = new DataGenerator({
+          plugin: plugin
+        });
+
+        return assert.isFulfilled(subject.generate())
+      })
+    });
+
     it('concatenates the package version and the git commit hash', function() {
       process.chdir('tests/fixtures/repo');
 
