@@ -1,5 +1,10 @@
 # ember-cli-deploy-revision-data Changelog
 
+## [0.2.3](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/0.2.3) (2016-04-28)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.2.2...0.2.3)
+
+- \[BUGFIX\] Dont use log as a local variable. [\#35](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/35) ([cball](https://github.com/cball))
+
 ## [0.2.2](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/0.2.2) (2016-04-28)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.2.1...0.2.2)
 
