@@ -1,5 +1,10 @@
 # ember-cli-deploy-revision-data Changelog
 
+## [0.2.2](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/0.2.2) (2016-04-28)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.2.1...0.2.2)
+
+- \[BUGFIX\] Gracefully handle partial git info. [\#33](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/33) ([cball](https://github.com/cball))
+
 ## [0.2.1](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/0.2.1) (2016-04-06)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.2.0...v0.2.1)
 
