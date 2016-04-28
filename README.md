@@ -156,6 +156,8 @@ The unique identifier of this build based on the version in the `package.json`, 
 
 For example, if your package.json version is `v2.0.3`, and the current commit is `0993043d49f9e0[...]`, this generator will return a revision of `v2.0.3+0993043d`.
 
+`Note:` Some environments (like CircleCI) may return partial git information. If the current commit hash cannot be determined, the generator will return only the package.json version (`v2.0.3`) as the `revisionKey`.
+
 ##### timestamp
 
 The timestamp of the current deploy
