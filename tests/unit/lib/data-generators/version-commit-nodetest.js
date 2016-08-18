@@ -1,6 +1,6 @@
 'use strict';
 
-var assert = require('ember-cli/tests/helpers/assert');
+var assert = require('../../../helpers/assert');
 var gitRepoInfo = require('git-repo-info');
 
 describe('the version-commit data generator', function() {
