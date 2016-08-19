@@ -1,6 +1,6 @@
 'use strict';
 
-var assert = require('ember-cli/tests/helpers/assert');
+var assert = require('../../../helpers/assert');
 
 describe('the file-hash data generator', function() {
   var DataGenerator;
