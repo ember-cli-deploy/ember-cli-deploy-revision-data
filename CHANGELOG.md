@@ -1,11 +1,18 @@
 # ember-cli-deploy-revision-data Changelog
 
+## [0.3.1](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/0.3.1) (2016-10-19)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.3.0...0.3.1)
+
+**Merged pull requests:**
+
+- README: Fix link to plugin documentation. [\#42](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/42) ([archit](https://github.com/archit))
+- lock git-repo-info to 1.2.0 [\#41](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/41) ([ghedamat](https://github.com/ghedamat))
+
 ## [0.3.0](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/0.3.0) (2016-08-18)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.2.3...0.3.0)
 
 - [#36](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/36) Getting git-commit to work again with CircleCI [@nathanpalmer](https://github.com/nathanpalmer)
 - [#38](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/38) Update dependencies and remove unnecessary files. [@lukemelia](https://github.com/lukemelia)
-
 
 ## [0.2.3](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/0.2.3) (2016-04-28)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.2.2...0.2.3)
