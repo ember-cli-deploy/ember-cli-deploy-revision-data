@@ -62,9 +62,8 @@ module.exports = {
       _getScmData: function() {
         var ScmDataGenerator = this.readConfig('scm');
         if (ScmDataGenerator) {
-          return new ScmDataGenerator({
-            plugin: this
-          }).generate();
+          var path = this.readConfig('distDir');
+          return new ScmDataGenerator(path).generate();
         } else {
           return Promise.resolve();
         }
