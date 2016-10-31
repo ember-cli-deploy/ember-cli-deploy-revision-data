@@ -37,6 +37,6 @@
     "git-repo-info": "1.2.0",
     "minimatch": "^3.0.3",
     "rsvp": "^3.2.1",
-    "simple-git": "^1.47.0"
+    "simple-git": "1.57.0"
   }
 }
