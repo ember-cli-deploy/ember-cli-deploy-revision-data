@@ -1,5 +1,14 @@
 # ember-cli-deploy-revision-data Changelog
 
+## [0.3.2](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/0.3.2) (2016-11-01)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.3.1...0.3.2)
+
+**Merged pull requests:**
+
+- [#45](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/45) Pass path string to SCM instead of object [@kpfefferle](https://github.com/kpfefferle)
+
+Thank you to all who took the time to contribute!
+
 ## [0.3.1](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/0.3.1) (2016-10-19)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.3.0...0.3.1)
 
