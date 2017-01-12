@@ -1,16 +1,22 @@
-# ember-cli-deploy-revision-data Changelog
+# Change Log
 
-## [0.3.2](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/0.3.2) (2016-11-01)
-[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.3.1...0.3.2)
+## [v0.3.3](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/v0.3.3) (2017-01-11)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.3.2...v0.3.3)
 
 **Merged pull requests:**
 
-- [#45](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/45) Pass path string to SCM instead of object [@kpfefferle](https://github.com/kpfefferle)
+- remove pinning for simple-git and git-repo-info [\#46](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/46) ([ghedamat](https://github.com/ghedamat))
+- Use public interface for git-repo-info [\#40](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/40) ([kkumler](https://github.com/kkumler))
 
-Thank you to all who took the time to contribute!
+## [v0.3.2](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/v0.3.2) (2016-11-01)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.3.1...v0.3.2)
 
-## [0.3.1](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/0.3.1) (2016-10-19)
-[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.3.0...0.3.1)
+**Merged pull requests:**
+
+- Pass path string to SCM instead of object [\#45](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/45) ([kpfefferle](https://github.com/kpfefferle))
+
+## [v0.3.1](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/v0.3.1) (2016-10-20)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.3.0...v0.3.1)
 
 **Merged pull requests:**
 
