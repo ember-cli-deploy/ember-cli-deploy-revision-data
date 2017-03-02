@@ -13,6 +13,7 @@ module.exports = {
       name: options.name,
       defaultConfig: {
         type: 'file-hash',
+        separator: '+',
         filePattern: 'index.html',
         versionFile: 'package.json',
         distDir: function(context) {

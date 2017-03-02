@@ -7,6 +7,13 @@ describe('the git-tag-commit data generator', function() {
   var DataGenerator;
   var cwd;
 
+  var plugin = {
+    stubConfig: {
+      separator: '+'
+    },
+    readConfig: function(key) { return this.stubConfig[key]; },
+  };
+
   before(function() {
     DataGenerator = require('../../../../lib/data-generators/git-tag-commit');
     gitRepoInfo._changeGitDir('dotgit');
@@ -24,7 +31,7 @@ describe('the git-tag-commit data generator', function() {
     it('concatenates the git tag and the git commit hash', function() {
       process.chdir('tests/fixtures/repo');
 
-      var subject = new DataGenerator();
+      var subject = new DataGenerator({ plugin: plugin });
 
       return assert.isFulfilled(subject.generate())
         .then(function(data) {
@@ -32,21 +39,28 @@ describe('the git-tag-commit data generator', function() {
         });
     });
 
-    it('returns a timestamp', function() {
+    it('concatenates the git tag and the git commit hash with a custom separator', function() {
       process.chdir('tests/fixtures/repo');
 
-      var subject = new DataGenerator();
+      var plugin = {
+        stubConfig: {
+          separator: '--'
+        },
+        readConfig: function(key) { return this.stubConfig[key]; },
+      };
+
+      var subject = new DataGenerator({ plugin: plugin });
 
       return assert.isFulfilled(subject.generate())
         .then(function(data) {
-          assert.isNotNull(data.timestamp);
+          assert.equal(data.revisionKey, '2.3.4--41d41f08');
         });
     });
 
     it('rejects if no repository found', function() {
       process.chdir('tests/fixtures/not-a-repo');
 
-      var subject = new DataGenerator();
+      var subject = new DataGenerator({ plugin: plugin });
 
       return assert.isRejected(subject.generate())
         .then(function(error) {
@@ -57,7 +71,7 @@ describe('the git-tag-commit data generator', function() {
     it('rejects if no git tag found', function() {
       process.chdir('tests/fixtures/tagless-repo');
 
-      var subject = new DataGenerator();
+      var subject = new DataGenerator({ plugin: plugin });
 
       return assert.isRejected(subject.generate())
         .then(function(error) {
