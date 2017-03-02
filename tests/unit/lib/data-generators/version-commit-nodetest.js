@@ -35,7 +35,8 @@ describe('the version-commit data generator', function() {
 
         var plugin = {
           stubConfig: {
-            versionFile: 'package.json'
+            versionFile: 'package.json',
+            separator: '+'
           },
           readConfig: function(key) { return this.stubConfig[key]; },
           log: function() {}
@@ -58,7 +59,8 @@ describe('the version-commit data generator', function() {
         var expectedMessage = /missing git commit sha/i;
         var plugin = {
           stubConfig: {
-            versionFile: 'package.json'
+            versionFile: 'package.json',
+            separator: '+'
           },
           readConfig: function(key) { return this.stubConfig[key]; },
           log: function(message) {
@@ -79,7 +81,8 @@ describe('the version-commit data generator', function() {
 
       var plugin = {
         stubConfig: {
-          versionFile: 'package.json'
+          versionFile: 'package.json',
+          separator: '+'
         },
         readConfig: function(key) { return this.stubConfig[key]; }
       };
@@ -94,12 +97,34 @@ describe('the version-commit data generator', function() {
         });
     });
 
+    it('concatenates the package version and the git commit hash with a custom separator', function() {
+      process.chdir('tests/fixtures/repo');
+
+      var plugin = {
+        stubConfig: {
+          versionFile: 'package.json',
+          separator: '--'
+        },
+        readConfig: function(key) { return this.stubConfig[key]; }
+      };
+
+      var subject = new DataGenerator({
+        plugin: plugin
+      });
+
+      return assert.isFulfilled(subject.generate())
+        .then(function(data) {
+          assert.equal(data.revisionKey, '3.2.1--41d41f08');
+        });
+    });
+
     it('has version source file option', function() {
       process.chdir('tests/fixtures/repo');
 
       var plugin = {
         stubConfig: {
-          versionFile: 'version.json'
+          versionFile: 'version.json',
+          separator: '+'
         },
         readConfig: function(key) { return this.stubConfig[key]; }
       };
@@ -119,7 +144,8 @@ describe('the version-commit data generator', function() {
 
       var plugin = {
         stubConfig: {
-          versionFile: 'package.json'
+          versionFile: 'package.json',
+          separator: '+'
         },
         readConfig: function(key) { return this.stubConfig[key]; }
       };
@@ -139,7 +165,8 @@ describe('the version-commit data generator', function() {
 
       var plugin = {
         stubConfig: {
-          versionFile: 'package.json'
+          versionFile: 'package.json',
+          separator: '+'
         },
         readConfig: function(key) { return this.stubConfig[key]; }
       };
@@ -159,7 +186,8 @@ describe('the version-commit data generator', function() {
 
       var plugin = {
         stubConfig: {
-          versionFile: 'tests/fixtures/missing-version.json'
+          versionFile: 'tests/fixtures/missing-version.json',
+          separator: '+'
         },
         readConfig: function(key) { return this.stubConfig[key]; }
       };

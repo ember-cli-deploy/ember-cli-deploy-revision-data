@@ -120,13 +120,19 @@ Constructs a revision key based on the most recent git tag and the currently che
 
 ##### revisionKey
 
-The unique identifier of this build based on the git tag, followed by a `+` symbol, followed by the first 8 characters of the current commit hash.
+The unique identifier of this build based on the git tag, followed by a the separator symbol (`+` by default), followed by the first 8 characters of the current commit hash.
 
 For example, if your most recent git tag is `v2.0.3`, and the current commit is `0993043d49f9e0[...]`, this generator will return a revision of `v2.0.3+0993043d`.
 
 ##### timestamp
 
 The timestamp of the current deploy
+
+#### Configuration Options
+
+##### separator
+
+The text used to separate the tag name from the commit sha. By default, `+` is used.
 
 ### Git Commit generator
 
@@ -152,7 +158,7 @@ Similar to the Git Tag Commit generator but uses the `package.json` version stri
 
 ##### revisionKey
 
-The unique identifier of this build based on the version in the `package.json`, followed by a `+` symbol, followed by the first 8 characters of the current commit hash.
+The unique identifier of this build based on the version in the `package.json`, followed by a the separator symbol (`+` by default), followed by the first 8 characters of the current commit hash.
 
 For example, if your package.json version is `v2.0.3`, and the current commit is `0993043d49f9e0[...]`, this generator will return a revision of `v2.0.3+0993043d`.
 
@@ -163,6 +169,10 @@ For example, if your package.json version is `v2.0.3`, and the current commit is
 The timestamp of the current deploy
 
 #### Configuration Options
+
+##### separator
+
+The text used to separate the tag name from the commit sha. By default, `+` is used.
 
 ##### versionFile
 
