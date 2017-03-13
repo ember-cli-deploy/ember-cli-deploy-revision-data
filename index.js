@@ -1,7 +1,7 @@
 /* jshint node: true */
 'use strict';
 
-var Promise = require('ember-cli/lib/ext/promise');
+var RSVP = require('rsvp');
 
 var DeployPluginBase = require('ember-cli-deploy-plugin');
 
@@ -38,7 +38,7 @@ module.exports = {
             scm: this._getScmData()
         };
 
-        return Promise.hash(promises)
+        return RSVP.hash(promises)
           .then(function(results) {
             var data = results.data;
             data.scm = results.scm;
@@ -66,13 +66,13 @@ module.exports = {
           var path = this.readConfig('distDir');
           return new ScmDataGenerator(path).generate();
         } else {
-          return Promise.resolve();
+          return RSVP.resolve();
         }
       },
 
       _errorMessage: function(error) {
         this.log(error, { color: 'red' });
-        return Promise.reject(error);
+        return RSVP.reject(error);
       }
     });
     return new DeployPlugin();
