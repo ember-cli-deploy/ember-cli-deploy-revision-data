@@ -223,7 +223,11 @@ The following properties are expected to be present on the deployment `context` 
 
 ## Running Tests
 
-- `npm test`
+* yarn test
+
+## Why `ember build` and `ember test` don't work
+
+Since this is a node-only ember-cli addon, this package does not include many files and dependencies which are part of ember-cli's typical `ember build` and `ember test` processes.
 
 [1]: http://ember-cli-deploy.com/ "Plugin Documentation"
 [2]: https://github.com/ember-cli-deploy/ember-cli-deploy-build "ember-cli-deploy-build"

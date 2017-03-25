@@ -117,7 +117,7 @@ describe('the index', function() {
           "revision-data": {
             type: 'file-hash',
             filePattern: 'index.html',
-            scm: function(context) {
+            scm: function(/* context */) {
               return require('../../lib/scm-data-generators')['git'];
             },
             distDir: function(context) {

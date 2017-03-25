@@ -48,7 +48,6 @@ describe('the version-commit data generator', function() {
 
         return assert.isFulfilled(subject.generate())
           .then(function(data) {
-            var path = gitRepoInfo._findRepo();
             assert.equal(data.revisionKey, '3.2.1');
           });
       });
