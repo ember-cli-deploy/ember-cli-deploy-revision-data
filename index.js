@@ -1,4 +1,3 @@
-/* jshint node: true */
 'use strict';
 
 var RSVP = require('rsvp');
@@ -24,7 +23,7 @@ module.exports = {
           return context.distFiles;
         },
 
-        scm: function(context) {
+        scm: function(/* context */) {
           return require('./lib/scm-data-generators')['git'];
         }
 

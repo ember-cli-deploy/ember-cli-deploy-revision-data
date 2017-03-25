@@ -4,19 +4,12 @@ The following steps should navigate you through the release process to ensure as
 
 ## Steps
 
-### Commit the changelog and publish to NPM
+### Commit the changelog, bump version, and publish to NPM
 
 1. run `./bin/changelog` and add output to `CHANGELOG.md`
 2. edit changelog output to be as user-friendly as possible (drop [INTERNAL] changes etc.)
-3. bump package.json version
-4. `./bin/prepare-release`
-5. `git checkout master`
-6. `git add` the modified `package.json` and `CHANGELOG.md`
-7. `git commit -m "Release vx.y.z"`
-8. `git push upstream master`
-9. `git tag "vx.y.z"`
-10. `git push upstream vx.y.z`
-11. `npm publish ./ember-cli-deploy-revision-data-<version>.tgz`
+3. `ember release`
+4. `npm publish`
 
 ### Create a github release
 
