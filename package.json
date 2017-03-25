@@ -11,7 +11,7 @@
   },
   "repository": "https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 4"
   },
   "author": "Aaron Chambers and the ember-cli-deploy team",
   "license": "MIT",
