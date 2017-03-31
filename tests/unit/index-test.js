@@ -78,7 +78,7 @@ describe('the index', function() {
         return previous;
       }, []);
 
-      assert.equal(messages.length, 7);
+      assert.equal(messages.length, 8);
     });
 
     it('adds default config to the config object', function() {

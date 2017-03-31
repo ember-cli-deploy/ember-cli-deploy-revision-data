@@ -52,6 +52,7 @@ For detailed information on how configuration of plugins works, please refer to 
 ```
 ENV["revision-data"] = {
   type: 'file-hash',
+  generator: null,
   scm: function(context) {
     return require('./lib/scm-data-generators')['git'];
   }
@@ -63,6 +64,21 @@ The type of [Data Generator](#data-generators) to be used.
 
 *Default:* `'file-hash'`
 *Alternatives:* `'git-tag-commit'`, `'git-commit'`, `'version-commit'`
+
+### generator
+
+Custom generator that can be used to override results from selected [Data Generator](#data-generators).
+
+*Default:* `null`
+*Alternative:*
+```js
+function (data) {
+  return Object.assign({}, data, { revisionKey: 'custom-generated-key' });
+}
+```
+
+Parameter `data` contains result of executing selected Data Generator.
+
 
 ### scm
 
