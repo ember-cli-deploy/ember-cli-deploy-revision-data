@@ -1,4 +1,8 @@
 # Change Log
+## [v1.0.0](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/v1.0.0) (2017-03-25)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v1.0.0-beta.0...v1.0.0)
+
+No changes from 1.0.0-beta.0
 
 ## [v1.0.0-beta.0](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/v1.0.0-beta.0) (2017-03-25)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v0.3.3...v1.0.0-beta.0)
