@@ -54,6 +54,7 @@ describe('the index', function() {
       plugin.configure(context);
       assert.ok(true); // it didn't throw
     });
+
     it('warns about missing optional config', function() {
       var plugin = subject.createDeployPlugin({
         name: 'revision-data'
@@ -78,7 +79,7 @@ describe('the index', function() {
         return previous;
       }, []);
 
-      assert.equal(messages.length, 7);
+      assert.equal(messages.length, 8);
     });
 
     it('adds default config to the config object', function() {
@@ -100,6 +101,7 @@ describe('the index', function() {
       assert.isDefined(context.config['revision-data'].type);
       assert.isDefined(context.config['revision-data'].filePattern);
       assert.isDefined(context.config['revision-data'].scm);
+      assert.isDefined(context.config['revision-data'].generator);
     });
   });
 
@@ -136,6 +138,44 @@ describe('the index', function() {
           assert.equal(result.revisionData.revisionKey, 'ae1569f72495012cd5e8588e0f2f5d49');
           assert.isNotNull(result.revisionData.timestamp);
           assert.isNotNull(result.revisionData.scm.email);
+        });
+    });
+
+    it('return the revisionData using custom generator', function() {
+      var plugin = subject.createDeployPlugin({
+        name: 'revision-data'
+      });
+
+      var context = {
+        distDir: 'tests/fixtures',
+        distFiles: ['index.html'],
+        ui: mockUi,
+        config: {
+          "revision-data": {
+            type: 'file-hash',
+            generator: function(data) {
+              assert.equal(data.revisionKey, 'ae1569f72495012cd5e8588e0f2f5d49');
+              return Object.assign({}, data, { revisionKey: 'custom-key'});
+            },
+            filePattern: 'index.html',
+            scm: function(/* context */) {
+              return require('../../lib/scm-data-generators')['git'];
+            },
+            distDir: function(context) {
+              return context.distDir;
+            },
+            distFiles: function(context) {
+              return context.distFiles;
+            }
+          },
+        }
+      };
+
+      plugin.beforeHook(context);
+
+      return assert.isFulfilled(plugin.prepare(context))
+        .then(function(result) {
+          assert.equal(result.revisionData.revisionKey, 'custom-key');
         });
     });
   });

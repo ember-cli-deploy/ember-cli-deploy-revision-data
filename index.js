@@ -12,6 +12,7 @@ module.exports = {
       name: options.name,
       defaultConfig: {
         type: 'file-hash',
+        generator: null,
         separator: '+',
         filePattern: 'index.html',
         versionFile: 'package.json',
@@ -31,6 +32,7 @@ module.exports = {
 
       prepare: function(/*context*/) {
         var self = this;
+        var customGenerator = this.pluginConfig['generator'];
 
         var promises = {
             data: this._getData(),
@@ -41,6 +43,11 @@ module.exports = {
           .then(function(results) {
             var data = results.data;
             data.scm = results.scm;
+
+            if (customGenerator && typeof customGenerator === 'function') {
+              data = customGenerator(data);
+            }
+
             self.log('generated revision data for revision: `' + data.revisionKey + '`', { verbose: true });
             return data;
           })
@@ -54,6 +61,7 @@ module.exports = {
         var type = this.readConfig('type');
         this.log('creating revision data using `' + type + '`', { verbose: true });
         var DataGenerator = require('./lib/data-generators')[type];
+
         return new DataGenerator({
           plugin: this
         }).generate();
