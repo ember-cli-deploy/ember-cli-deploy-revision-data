@@ -30,6 +30,7 @@ describe('the git scm data generator', function() {
           assert.equal(data.sha, '41d41f081b45ad50935c08b1203220737d9739b4');
           assert.equal(data.email, 'alisdair@mcdiarmid.org');
           assert.equal(data.name, 'Alisdair McDiarmid');
+          assert.equal(data.message, 'Initial commit')
           assert.isNotNull(data.timestamp);
           assert.equal(data.branch, 'master');
           assert.equal(data.tag, '2.3.4');

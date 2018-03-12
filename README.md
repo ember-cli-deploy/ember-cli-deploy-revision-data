@@ -202,6 +202,10 @@ Committer's email
 
 Committer's name
 
+##### message
+
+The commit message
+
 ##### branch
 
 Git branch being deployed
