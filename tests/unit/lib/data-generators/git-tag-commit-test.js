@@ -28,7 +28,7 @@ describe('the git-tag-commit data generator', function() {
   });
 
   describe('#generate', function() {
-    it('concatenates the git tag and the git commit hash', function() {
+    it('concatenates the current git tag and the git commit hash', function() {
       process.chdir('tests/fixtures/repo');
 
       var subject = new DataGenerator({ plugin: plugin });
@@ -36,6 +36,17 @@ describe('the git-tag-commit data generator', function() {
       return assert.isFulfilled(subject.generate())
         .then(function(data) {
           assert.equal(data.revisionKey, '2.3.4+41d41f08');
+        });
+    });
+
+    it('concatenates an ancestor tag and the current git commit hash', function() {
+      process.chdir('tests/fixtures/tagged-ancestor-repo');
+
+      var subject = new DataGenerator({ plugin: plugin });
+
+      return assert.isFulfilled(subject.generate())
+        .then(function(data) {
+          assert.equal(data.revisionKey, '2.3.4+483354f6');
         });
     });
 
