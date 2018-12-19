@@ -54,6 +54,7 @@ describe('the index', function() {
       plugin.configure(context);
       assert.ok(true); // it didn't throw
     });
+
     it('warns about missing optional config', function() {
       var plugin = subject.createDeployPlugin({
         name: 'revision-data'
@@ -78,7 +79,7 @@ describe('the index', function() {
         return previous;
       }, []);
 
-      assert.equal(messages.length, 7);
+      assert.equal(messages.length, 8);
     });
 
     it('adds default config to the config object', function() {
@@ -100,6 +101,60 @@ describe('the index', function() {
       assert.isDefined(context.config['revision-data'].type);
       assert.isDefined(context.config['revision-data'].filePattern);
       assert.isDefined(context.config['revision-data'].scm);
+    });
+
+    it('defaults commitHashLength to 7 when type is git-commit', function() {
+      var plugin = subject.createDeployPlugin({ name: 'revision-data' });
+
+      var context = {
+        ui: mockUi,
+        config: {
+          'revision-data': {
+            type: 'git-commit'
+          }
+        }
+      };
+
+      plugin.beforeHook(context);
+      plugin.configure(context);
+
+      assert.equal(context.config['revision-data'].commitHashLength(), 7);
+    });
+
+    it('defaults commitHashLength to 8 when type is git-tag-commit', function() {
+      var plugin = subject.createDeployPlugin({ name: 'revision-data' });
+
+      var context = {
+        ui: mockUi,
+        config: {
+          'revision-data': {
+            type: 'git-tag-commit'
+          }
+        }
+      };
+
+      plugin.beforeHook(context);
+      plugin.configure(context);
+
+      assert.equal(context.config['revision-data'].commitHashLength(), 8);
+    });
+
+    it('defaults commitHashLength to 8 when type is version-commit', function() {
+      var plugin = subject.createDeployPlugin({ name: 'revision-data' });
+
+      var context = {
+        ui: mockUi,
+        config: {
+          'revision-data': {
+            type: 'version-commit'
+          }
+        }
+      };
+
+      plugin.beforeHook(context);
+      plugin.configure(context);
+
+      assert.equal(context.config['revision-data'].commitHashLength(), 8);
     });
   });
 
