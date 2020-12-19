@@ -78,7 +78,7 @@ You can also pass your own custom scm generator class.
 
 Data generators are the strategies used to generate information about the revision being deployed. A data generator must return an object which contains a property called `revisionKey` which uniquely identifies the current revision. A generator can add any other data that it deems relevant to the data object that it returns.
 
-### File Hash generator
+### File Hash generator (`file-hash`)
 
 This generator contructs a revisionKey from the fingerprint of the `index.html` file.
 
@@ -112,7 +112,7 @@ The list of built project files. This option should be relative to `distDir` and
 
 *Default:* `context.distFiles`
 
-### Git Tag Commit generator
+### Git Tag Commit generator (`git-tag-commit`)
 
 Constructs a revision key based on the most recent git tag and the currently checked-out commit.
 
@@ -134,7 +134,7 @@ The timestamp of the current deploy
 
 The text used to separate the tag name from the commit sha. By default, `+` is used.
 
-### Git Commit generator
+### Git Commit generator (`git-commit`)
 
 Constructs a revision key based on the most recent git commit.
 
@@ -150,7 +150,7 @@ For example, if the current commit is `0993043d49f9e0[...]`, this generator will
 
 The timestamp of the current deploy
 
-### Version Commit generator
+### Version Commit generator (`version-commit`)
 
 Similar to the Git Tag Commit generator but uses the `package.json` version string to construct the revision key instead of the git tag.
 
