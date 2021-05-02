@@ -15,6 +15,15 @@ module.exports = {
         separator: '+',
         filePattern: 'index.html',
         versionFile: 'package.json',
+
+        commitHashLength: function() {
+          if (this.type === 'git-commit') {
+            return 7;
+          } else {
+            return 8;
+          }
+        },
+
         distDir: function(context) {
           return context.distDir;
         },
@@ -26,7 +35,6 @@ module.exports = {
         scm: function(/* context */) {
           return require('./lib/scm-data-generators')['git'];
         }
-
       },
 
       prepare: function(/*context*/) {
