@@ -1,4 +1,21 @@
 # Change Log
+## v2.0.0-beta.0 (2021-05-02)
+
+#### :rocket: Enhancement
+* [#71](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/71) Allow custom commit hash length when constructing revisionKey ([@HeroicEric](https://github.com/HeroicEric))
+
+#### :house: Internal
+* [#75](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/75) Bump js-yaml from 3.8.2 to 3.14.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#74](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/74) Bump websocket-extensions from 0.1.1 to 0.1.4 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#73](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/73) Upgrade deps ([@lukemelia](https://github.com/lukemelia))
+
+#### Committers: 5
+- Ed Fricker ([@beastawakens](https://github.com/beastawakens))
+- Eric Kelly ([@HeroicEric](https://github.com/HeroicEric))
+- Luke Melia ([@lukemelia](https://github.com/lukemelia))
+- Michal Bryxí ([@MichalBryxi](https://github.com/MichalBryxi))
+- Pepijn Schoen ([@duizendnegen](https://github.com/duizendnegen))
+
 ## [v1.0.0](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/tree/v1.0.0) (2017-03-25)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/compare/v1.0.0-beta.0...v1.0.0)
 
