@@ -78,7 +78,7 @@ You can also pass your own custom scm generator class.
 
 Data generators are the strategies used to generate information about the revision being deployed. A data generator must return an object which contains a property called `revisionKey` which uniquely identifies the current revision. A generator can add any other data that it deems relevant to the data object that it returns.
 
-### File Hash generator
+### File Hash generator (`file-hash`)
 
 This generator contructs a revisionKey from the fingerprint of the `index.html` file.
 
@@ -112,7 +112,7 @@ The list of built project files. This option should be relative to `distDir` and
 
 *Default:* `context.distFiles`
 
-### Git Tag Commit generator
+### Git Tag Commit generator (`git-tag-commit`)
 
 Constructs a revision key based on the most recent git tag and the currently checked-out commit.
 
@@ -120,7 +120,7 @@ Constructs a revision key based on the most recent git tag and the currently che
 
 ##### revisionKey
 
-The unique identifier of this build based on the git tag, followed by a the separator symbol (`+` by default), followed by the first 8 characters of the current commit hash.
+The unique identifier of this build based on the git tag, followed by the separator symbol (`+` by default), followed by the first 8 characters of the current commit hash.
 
 For example, if your most recent git tag is `v2.0.3`, and the current commit is `0993043d49f9e0[...]`, this generator will return a revision of `v2.0.3+0993043d`.
 
@@ -130,11 +130,15 @@ The timestamp of the current deploy
 
 #### Configuration Options
 
+##### commitHashLength
+
+The length of the commit hash that is used when constructing the `revisionKey`.
+
 ##### separator
 
 The text used to separate the tag name from the commit sha. By default, `+` is used.
 
-### Git Commit generator
+### Git Commit generator (`git-commit`)
 
 Constructs a revision key based on the most recent git commit.
 
@@ -149,6 +153,12 @@ For example, if the current commit is `0993043d49f9e0[...]`, this generator will
 ##### timestamp
 
 The timestamp of the current deploy
+
+#### Configuration Options
+
+##### commitHashLength
+
+The length of the commit hash that is used as the `revisionKey`.
 
 ### Version Commit generator
 
@@ -169,6 +179,10 @@ For example, if your package.json version is `v2.0.3`, and the current commit is
 The timestamp of the current deploy
 
 #### Configuration Options
+
+##### commitHashLength
+
+The length of the commit hash that is used when constructing the `revisionKey`.
 
 ##### separator
 

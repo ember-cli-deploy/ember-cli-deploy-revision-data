@@ -1,42 +1,64 @@
 {
   "name": "ember-cli-deploy-revision-data",
-  "version": "1.0.0",
+  "version": "2.0.0-beta.0",
   "description": "An ember-cli-deploy plugin to generate data about this deploy revision including a unique revision key based on the current build",
+  "keywords": [
+    "ember-addon",
+    "ember-cli-deploy-plugin"
+  ],
+  "repository": "https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data",
+  "license": "MIT",
+  "author": "Aaron Chambers and the ember-cli-deploy team",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
   "scripts": {
-    "test": "node tests/runner.js && ./node_modules/.bin/eslint index.js lib/* tests/*"
+    "test": "eslint index.js lib/**/*.js tests/**/*.js && node ./tests/runner.js"
   },
-  "repository": "https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data",
-  "engines": {
-    "node": ">= 4"
-  },
-  "author": "Aaron Chambers and the ember-cli-deploy team",
-  "license": "MIT",
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
-    "ember-cli": "^2.12.0",
-    "ember-cli-release": "1.0.0-beta.2",
-    "eslint": "^3.18.0",
-    "github": "^2.5.1",
-    "glob": "^7.1.1",
-    "mocha": "^3.2.0",
-    "multiline": "^1.0.2"
-  },
-  "keywords": [
-    "ember-addon",
-    "ember-cli-deploy-plugin"
-  ],
   "dependencies": {
-    "chalk": "^1.1.3",
-    "core-object": "^2.0.6",
-    "ember-cli-deploy-plugin": "^0.2.6",
-    "git-repo-info": "^2.0.0",
-    "minimatch": "^3.0.3",
-    "rsvp": "^3.5.0",
-    "simple-git": "^1.57.0"
+    "chalk": "^4.1.1",
+    "core-object": "^3.1.5",
+    "ember-cli-deploy-plugin": "^0.2.9",
+    "git-repo-info": "^2.1.1",
+    "minimatch": "^3.0.4",
+    "rsvp": "^4.8.5",
+    "simple-git": "^2.38.0"
+  },
+  "devDependencies": {
+    "@octokit/rest": "^18.5.3",
+    "chai": "^4.3.4",
+    "chai-as-promised": "^7.1.1",
+    "ember-cli": "^3.26.1",
+    "eslint": "^7.25.0",
+    "glob": "^7.1.6",
+    "mocha": "^8.3.2",
+    "release-it": "^14.6.1",
+    "release-it-lerna-changelog": "^3.1.0"
+  },
+  "engines": {
+    "node": ">= 12"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "release-it": {
+    "plugins": {
+      "release-it-lerna-changelog": {
+        "infile": "CHANGELOG.md",
+        "launchEditor": false
+      }
+    },
+    "git": {
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true,
+      "tokenRef": "GITHUB_AUTH"
+    }
+  },
+  "volta": {
+    "node": "14.16.1",
+    "yarn": "1.22.10"
   }
 }
