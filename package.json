@@ -23,7 +23,7 @@
     "git-repo-info": "^2.1.1",
     "minimatch": "^3.0.4",
     "rsvp": "^4.8.5",
-    "simple-git": "^2.38.0"
+    "simple-git": "^3.3.0"
   },
   "devDependencies": {
     "@octokit/rest": "^18.5.3",
