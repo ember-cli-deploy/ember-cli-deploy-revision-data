@@ -1,4 +1,12 @@
 # Change Log
+## v2.0.0 (2022-03-25)
+
+#### :rocket: Enhancement
+* [#66](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/66) Change git-tag-commit data generator to use most recent ancestor tag ([@courajs](https://github.com/courajs))
+
+#### Committers: 1
+- Aaron Sikes ([@courajs](https://github.com/courajs))
+
 ## v2.0.0-beta.0 (2021-05-02)
 
 #### :rocket: Enhancement
