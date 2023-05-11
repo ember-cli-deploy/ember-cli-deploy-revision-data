@@ -66,7 +66,7 @@ The type of [Data Generator](#data-generators) to be used.
 
 ### scm
 
-The type of the [SCM Data Generator](#scm-data-generator) to be used
+The type of the [SCM Data Generator](#scm-data-generators) to be used
 
 *Default:* GitScmDataGenerator
 
