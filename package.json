@@ -21,23 +21,23 @@
     "core-object": "^3.1.5",
     "ember-cli-deploy-plugin": "^0.2.9",
     "git-repo-info": "^2.1.1",
-    "minimatch": "^3.0.4",
+    "minimatch": "^3.1.2",
     "rsvp": "^4.8.5",
-    "simple-git": "^3.3.0"
+    "simple-git": "^3.19.0"
   },
   "devDependencies": {
-    "@octokit/rest": "^18.5.3",
-    "chai": "^4.3.4",
+    "@octokit/rest": "^18.12.0",
+    "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
-    "ember-cli": "^3.26.1",
-    "eslint": "^7.25.0",
-    "glob": "^7.1.6",
+    "ember-cli": "^3.28.6",
+    "eslint": "^8.42.0",
+    "glob": "^10.2.6",
     "mocha": "^8.3.2",
     "release-it": "^14.6.1",
     "release-it-lerna-changelog": "^3.1.0"
   },
   "engines": {
-    "node": ">= 12"
+    "node": "14.x || 16.x || 18.x || >= 20"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
@@ -58,7 +58,7 @@
     }
   },
   "volta": {
-    "node": "14.16.1",
+    "node": "14.21.3",
     "yarn": "1.22.18"
   }
 }
