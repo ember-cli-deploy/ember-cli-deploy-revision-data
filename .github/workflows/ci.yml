@@ -1,41 +1,40 @@
-name: 'CI'
+name: Continuous Integration
+
 on:
   pull_request:
     branches: [master]
 
 jobs:
-  test_and_lint:
-    name: 'Test'
+  test:
+    name: Test
     runs-on: ubuntu-latest
-    timeout-minutes: 5
-
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x, 20.x]
     steps:
     - uses: actions/checkout@v2
-    - uses: volta-cli/action@v1
-
-    - name: Get package manager's global cache path
-      id: global-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-
-    - name: Cache package manager's global cache and node_modules
-      id: cache-dependencies
-      uses: actions/cache@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
       with:
-        path: |
-          ${{ steps.global-cache-dir-path.outputs.dir }}
-          node_modules
-        key: ${{ runner.os }}-${{ matrix.node-version }}-${{
-          hashFiles('**/yarn.lock'
-          ) }}
-        restore-keys: |
-          ${{ runner.os }}-${{ matrix.node-version }}-
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+    - run: yarn install
+    - run: yarn test
 
-    - name: Install
-      run: yarn install
-
-    - name: Run tests and linting
+  test-floating:
+    name: Floating Dependencies
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x, 20.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+    - name: install dependencies
+      run: yarn install --no-lockfile
+    - name: test
       run: yarn test
-
-
-
-
