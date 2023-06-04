@@ -1,4 +1,13 @@
 # Change Log
+## v3.0.0 (2023-06-04)
+
+#### :boom: Breaking Change
+* [#97](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/97) [BREAKING] update deps and node version requirements # Do not modify or remove the line above. # Everything below it will be ignored. ([@lukemelia](https://github.com/lukemelia))
+
+#### Committers: 2
+- Floyd ([@fhightower](https://github.com/fhightower))
+- Luke Melia ([@lukemelia](https://github.com/lukemelia))
+
 ## v2.0.0 (2022-03-25)
 
 #### :rocket: Enhancement

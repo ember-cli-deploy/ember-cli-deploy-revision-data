@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-deploy-revision-data",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "An ember-cli-deploy plugin to generate data about this deploy revision including a unique revision key based on the current build",
   "keywords": [
     "ember-addon",
