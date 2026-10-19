@@ -21,7 +21,7 @@
     "core-object": "^3.1.5",
     "ember-cli-deploy-plugin": "^0.2.9",
     "git-repo-info": "^2.1.1",
-    "minimatch": "^3.1.2",
+    "minimatch": "^10.2.6",
     "rsvp": "^4.8.5",
     "simple-git": "^3.19.0"
   },
