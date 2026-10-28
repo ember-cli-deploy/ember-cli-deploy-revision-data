@@ -37,7 +37,7 @@
     "release-it-lerna-changelog": "^3.1.0"
   },
   "engines": {
-    "node": "14.x || 16.x || 18.x || >= 20"
+    "node": ">= 20"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
@@ -58,7 +58,7 @@
     }
   },
   "volta": {
-    "node": "14.21.3",
+    "node": "20.19.0",
     "yarn": "1.22.18"
   }
 }
