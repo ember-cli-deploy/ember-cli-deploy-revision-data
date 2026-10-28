@@ -14,6 +14,7 @@
     "test": "tests"
   },
   "scripts": {
+    "release": "release-it",
     "test": "eslint index.js lib/**/*.js tests/**/*.js && node ./tests/runner.js"
   },
   "dependencies": {
@@ -26,15 +27,14 @@
     "simple-git": "^4.0.2"
   },
   "devDependencies": {
-    "@octokit/rest": "^18.12.0",
+    "@release-it-plugins/lerna-changelog": "^9.0.0",
     "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
     "ember-cli": "^3.28.6",
     "eslint": "^8.42.0",
     "glob": "^10.2.6",
     "mocha": "^8.3.2",
-    "release-it": "^14.6.1",
-    "release-it-lerna-changelog": "^3.1.0"
+    "release-it": "^20.2.1"
   },
   "engines": {
     "node": ">= 20"
@@ -44,7 +44,7 @@
   },
   "release-it": {
     "plugins": {
-      "release-it-lerna-changelog": {
+      "@release-it-plugins/lerna-changelog": {
         "infile": "CHANGELOG.md",
         "launchEditor": false
       }
