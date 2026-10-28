@@ -1,4 +1,22 @@
 # Change Log
+
+## v4.0.0 (2026-10-28)
+
+#### :boom: Breaking Change
+* [#104](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/104) Upgrade simple-git to v4 (ambient GIT_* env vars are no longer passed to git) ([@matthewhartstonge](https://github.com/matthewhartstonge))
+* [#105](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/105) Require Node 20+, update CI matrix and actions ([@lukemelia](https://github.com/lukemelia))
+
+#### :bug: Bug Fix
+* [#103](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/103) Bump minimatch from 3.1.2 to 10.2.6 ([@matthewhartstonge](https://github.com/matthewhartstonge))
+
+#### :house: Internal
+* [#113](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/113) Upgrade release-it to v20, add release script, update RELEASE.md ([@lukemelia](https://github.com/lukemelia))
+* [#108](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/pull/108) Switch from yarn to pnpm ([@lukemelia](https://github.com/lukemelia))
+
+#### Committers: 2
+- Luke Melia ([@lukemelia](https://github.com/lukemelia))
+- Matthew Hartstonge ([@matthewhartstonge](https://github.com/matthewhartstonge))
+
 ## v3.0.0 (2023-06-04)
 
 #### :boom: Breaking Change
