@@ -241,7 +241,7 @@ The following properties are expected to be present on the deployment `context` 
 
 ## Running Tests
 
-* yarn test
+* pnpm test
 
 ## Why `ember build` and `ember test` don't work
 
